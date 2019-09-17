@@ -6,38 +6,37 @@ using UnityEngine.UI;
 public class KnifeThrow : MonoBehaviour
 {
     GameObject Target;
-    float moveSpeed = 100.0f;
+
+    GameObject [] enemyTargets;
+    float[] distanceFromTarget;
+
+    float moveSpeed = 10.0f;
     GameStates state;
-    
-    
+    float distance;
+
+    bool triggered;
+
     // Start is called before the first frame update
     void Start()
     {
-        Target = GameObject.FindWithTag("Target");
-        
+        //Target = GameObject.FindWithTag("Target");
+        //enemyTargets = GameObject.FindGameObjectsWithTag("Target");
     }
 
     // Update is called once per frame
     void Update()
     {
-        float distance = Vector3.Distance(transform.position, Target.transform.position);
         
-        transform.Translate(Vector3.up*moveSpeed*Time.deltaTime);
-        if (distance <= 5)
-        {
-            print("I hit the target");
-            PlayerInteraction.hits++;
 
-            Destroy(gameObject);
-        }
-        if (distance <= 20)
+        if (PlayerInventory.Knife)
+            transform.Translate(Vector3.up *moveSpeed* Time.deltaTime);
+        else
+            transform.Translate(Vector3.forward *moveSpeed* Time.deltaTime);
+
+        if (triggered)
         {
-            print("I'm Too close!");
+            print("stop moving");
             moveSpeed = 0;
-        }
-        if (distance >= 500)
-        {
-            Destroy(gameObject);
         }
         if (StopTimeMech.state == GameStates.TimeStop)
         {
@@ -46,18 +45,34 @@ public class KnifeThrow : MonoBehaviour
            
             
         }
-        else
+         if(StopTimeMech.state == GameStates.Normal)
         {
-            moveSpeed = 100;
+            triggered = false;
+            print("now move");
+            moveSpeed = 10;
         }
+
+
+        
+
         //transform.rotation = Quaternion.RotateTowards(transform.rotation, Target.transform.rotation, 100.0f);
         
     }
     void OnTriggerEnter(Collider coll)
     {
-        if(coll.gameObject.tag == "Target")
+        if(coll.gameObject.tag == "StopTrigger")
+        {
+            print("I triggered the target!");
+            triggered = true;
+            
+        }
+    }
+    void OnCollisionEnter(Collision coll)
+    {
+        if (coll.gameObject.tag == "Target")
         {
             print("I hit the target");
+            
         }
     }
 }

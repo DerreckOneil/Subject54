@@ -6,11 +6,11 @@ public class PlayerInventory : MonoBehaviour
 {
 
    public static bool Knife;
-    static bool Pistol;
+    public static bool Pistol;
     static bool AR;
 
     public GameObject knife;
-    GameObject pistol;
+    public GameObject pistol;
     GameObject ar;
 
     void Start()
@@ -25,6 +25,12 @@ public class PlayerInventory : MonoBehaviour
         {
             knife.SetActive(true);
         }
+
+        if (Pistol)
+        {
+            pistol.SetActive(true);
+        }
+
     }
     
 }

@@ -18,7 +18,24 @@ public class Movement : MonoBehaviour
     void Update()
     {
         //transform.position += Vector3.forward * moveSpeed; 
-        transform.Translate(Vector3.forward * moveSpeed * timeFrame);
+        transform.Translate(Vector3.forward *moveSpeed * timeFrame);
 
+    }
+
+    void OnCollisionEnter(Collision coll)
+    {
+        print("I Collided with something!!!");
+        if (coll.gameObject.tag == "Player")
+        {
+            print("I hit the Player!");
+            PlayerStats.health--;
+
+        }
+        if(coll.gameObject.tag == "Target")
+        {
+            print("I hit the enemy!!!");
+
+        }
+        Destroy(gameObject);
     }
 }

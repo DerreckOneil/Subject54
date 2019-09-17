@@ -10,6 +10,14 @@ TagManager:
   - Knife
   - ps
   - Text
+  - Enemy
+  - img
+  - Fire
+  - Goal
+  - Pistol
+  - PlayerBullet
+  - StopTrigger
+  - sp
   layers:
   - Default
   - TransparentFX

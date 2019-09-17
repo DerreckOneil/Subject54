@@ -6,17 +6,21 @@ using UnityEngine.UI;
 public class StopTimeMech : MonoBehaviour
 {
     GameObject[] ps;
+    GameObject image;
    
     public static GameStates state;
 
     void Awake()
     {
-        
+        image = GameObject.FindWithTag("img");
+        image.gameObject.SetActive(false);
+
     }
     // Start is called before the first frame update
     void Start()
     {
-        
+
+        state = GameStates.Normal;
     }
     
 
@@ -37,23 +41,27 @@ public class StopTimeMech : MonoBehaviour
                 break;
 
         }
-       if(Input.GetKey(KeyCode.Mouse1))
+       if(Input.GetKeyDown(KeyCode.Mouse1))
        {
-              Debug.Log("Stop Time");
-            state = GameStates.TimeStop;
+            if (state == GameStates.TimeStop)
+            {
 
-             
+                state = GameStates.Normal;
+                image.SetActive(false);
+            }
+            else
+            {
+
+                Debug.Log("Stop Time");
+                state = GameStates.TimeStop;
+                image.SetActive(true);
+            }
+            
 
              
 
         }
-        else
-        {
-            state = GameStates.Normal;
-            
-            
-            
-        }
+        
     }
 
     void stopTime()
@@ -63,6 +71,13 @@ public class StopTimeMech : MonoBehaviour
         for (int i = 0; i < ps.Length; i++)
         {
             ps[i].GetComponent<ParticleSystem>().Pause(true);
+        }
+        if(PlayerStats.energy <=0)
+        {
+            print("change to normal time!");
+            state = GameStates.Normal;
+            image.SetActive(false);
+            normalTime();
         }
     }
     void normalTime()
