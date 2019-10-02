@@ -10,16 +10,25 @@ public class PlayerInteraction : MonoBehaviour
     public LayerMask layerMask;
     public float rayLength;
 
-    
-    public Text hitText;
-    public Text scoreText;
-    public Text healthText;
-    public static int hits;
+    [SerializeField]
+    private Text hitText;
+    [SerializeField]
+    private Text scoreText;
+    [SerializeField]
+    private Text healthText;
+    [SerializeField]
+    private Text VendingText;
 
+    public static int hits;
+    int healthPrice = 1000;
+
+    public Animator backToIdle;
+    public Animator GunPickUp;
     // Start is called before the first frame update
     void Start()
     {
         //hitText = Text.FindObjectOfType<Text>();
+        VendingText.text = "";
     }
 
     // Update is called once per frame
@@ -53,9 +62,29 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     print("Pistol Aquired");
                     PlayerInventory.Pistol = true;
+                    GunPickUp.SetTrigger("GunPickUp");
+                    StartCoroutine(gunPickUp());
 
                 }
             }
+            if(rayHit.collider.gameObject.tag == "HealthMachine")
+            {
+                VendingText.text = "Left Click To Buy 10 Health For: " + healthPrice + " Score.";
+                if(Input.GetKeyDown(KeyCode.Mouse0) && PlayerStats.score > (PlayerStats.score - healthPrice))
+                {
+                    PlayerStats.health += 10;
+                    PlayerStats.score -= healthPrice;
+                    healthPrice += 300;
+                }
+                
+            }
+            
+
+
+            }
+        else
+        {
+            VendingText.text = "";
         }
 
     }
@@ -73,5 +102,13 @@ public class PlayerInteraction : MonoBehaviour
         {
             print("I got hit by an enemy!");
         }
+    }
+
+    IEnumerator gunPickUp()
+    {
+        print("Picked Up Pistol");
+        yield return new WaitForSeconds(2);
+        print("Go Back to Idle");
+        backToIdle.SetTrigger("BackToIdle");
     }
 }

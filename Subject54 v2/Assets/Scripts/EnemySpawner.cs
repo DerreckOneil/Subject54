@@ -16,12 +16,17 @@ public class EnemySpawner : MonoBehaviour
 
     bool waveEnd;
     bool waited;
+    bool firstWaveStart;
+
     public GameObject enemyPrefab;
+    GameObject firstEnemy;
     // Start is called before the first frame update
     void Start()
     {
         wave++;
         spawnPoint = GameObject.FindGameObjectsWithTag("sp");
+        firstEnemy = GameObject.FindWithTag("Target");
+        firstEnemy.SetActive(false);
     }
 
     // Update is called once per frame
@@ -31,11 +36,18 @@ public class EnemySpawner : MonoBehaviour
         numEnemies = GameObject.FindGameObjectsWithTag("Target");
 
         print("Enemy/enemies: " + numEnemies.Length);
-
-        if(numEnemies.Length <= 0 && waveEnd ==false)
+        
+        if(PlayerInventory.Pistol && firstEnemy != null)
+        {
+            firstEnemy.SetActive(true);
+            firstWaveStart = true;
+            numEnemies = GameObject.FindGameObjectsWithTag("Target");
+        }
+        
+        if (numEnemies.Length <= 0 && waveEnd == false && firstWaveStart)
         {
             waveEnd = true;
-            print("there are no more enemies!");
+            print("there are no more enemies!" );
             
             StartCoroutine(newRoundPause());
             //spawnEnemy();
@@ -53,6 +65,7 @@ public class EnemySpawner : MonoBehaviour
         {
             for (int i = 0; i < spawnPoint.Length; i++)
             {
+                yield return new WaitForSeconds(1);
                 Instantiate(enemyPrefab, spawnPoint[i].transform.position, spawnPoint[i].transform.rotation);
 
             }

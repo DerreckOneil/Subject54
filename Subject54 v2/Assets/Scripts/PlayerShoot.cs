@@ -7,14 +7,35 @@ public class PlayerShoot : MonoBehaviour
 {
     public Transform spawnPoint;
     public GameObject playerBullet;
+    [SerializeField]
+    private GameObject fireBall;
+    [SerializeField]
+    private GameObject fbSpawnPoint;
 
     int pistolMag = 7;
 
     public Text pistolText;
     bool stopShooting;
+    bool waiting;
+    bool fire;
+
+    public AudioSource soundPlayer;
+    public AudioClip shootSound;
+    public AudioClip clickSound;
+    public AudioClip reloadSound;
+
+    [Range(0.0f, 1.0f)]
+    public float ShotVolume;
+
+    public Animator gunReload;
+
+    
+
     // Start is called before the first frame update
     void Start()
     {
+        fire = true;
+        //gunReload.enabled = true;
         //spawnPoint = GameObject.FindWithTag("").transform;
     }
 
@@ -24,11 +45,16 @@ public class PlayerShoot : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Mouse0) && PlayerInventory.Pistol)
         {
             print("Shoot!");
-            if (pistolMag <= 0)
+            if (pistolMag <= 0 && stopShooting == false)
             {
                 stopShooting = true;
-                
+                soundPlayer.PlayOneShot(clickSound, ShotVolume);
+                waiting = true;
                 StartCoroutine(quickPause());
+            }
+            if(!waiting)
+            {
+                soundPlayer.PlayOneShot(shootSound, ShotVolume);
             }
 
             if (!stopShooting)
@@ -38,7 +64,25 @@ public class PlayerShoot : MonoBehaviour
             }
         }
 
-        pistolText.text = "Pistol: " + pistolMag + "/Unlimited";
+
+        if (Input.GetKeyDown(KeyCode.Mouse2) && PlayerInventory.Pistol && PlayerStats.energy > 1 && stopShooting == false)
+        {
+            print("shoot Fireball!");
+            if (fire)
+            {
+                StartCoroutine(shootFireball());
+            }
+            
+        }
+
+            if (PlayerInventory.Pistol)
+        {
+            pistolText.text = "Pistol: " + pistolMag + "/Unlimited";
+        }
+        else
+        {
+            pistolText.text = "";
+        }
     }
     void spawnBullet()
     {
@@ -48,11 +92,25 @@ public class PlayerShoot : MonoBehaviour
      IEnumerator quickPause()
     {
         Debug.Log("Let's wait a bit");
-
-        yield return new WaitForSeconds(3);
-
+        //gunReload = GameObject.FindWithTag("Pistol").GetComponent<Animator>();
+        
+        soundPlayer.PlayOneShot(reloadSound, ShotVolume);
+        gunReload.SetTrigger("Reloading");
+        yield return new WaitForSeconds(2.7f);
+        pistolMag = 7;
+        gunReload.SetTrigger("BackToIdle");
         Debug.Log("Ok...start shooting again");
         stopShooting = false;
-        pistolMag = 7;
+        
+        waiting = false;
+    }
+
+    IEnumerator shootFireball()
+    {
+        
+        gunReload.SetTrigger("MeleeHit");
+        yield return new WaitForSeconds(0.6f);
+        Instantiate(fireBall, fbSpawnPoint.transform.position, fbSpawnPoint.transform.rotation);
+        fire = true;
     }
 }

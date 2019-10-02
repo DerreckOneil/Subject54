@@ -37,7 +37,7 @@ public class PlayerStats : MonoBehaviour
             print("I'm dead");
             if (SceneManager.GetActiveScene().name == "StartGame")
             {
-                Destroy(Player);
+                SceneManager.LoadScene("LoseScreen");
             }
             else
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);

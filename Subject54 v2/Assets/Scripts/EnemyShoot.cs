@@ -6,12 +6,18 @@ public class EnemyShoot : MonoBehaviour
 {
     public Transform spawnPoint;
     public GameObject EnemyBullet;
-    
 
+    public AudioSource soundPlayer;
+    public AudioClip shootSound;
+
+    [Range(0.0f, 1.0f)]
+    public float ShotVolume;
+
+    EnemyStats enemy;
     // Start is called before the first frame update
     void Start()
     {
-        
+        enemy = this.gameObject.GetComponent<EnemyStats>();
     }
 
     // Update is called once per frame
@@ -22,8 +28,11 @@ public class EnemyShoot : MonoBehaviour
         if(time % 1 == 0 && time != 0)
         {
             print("Every one second");
-            if(StopTimeMech.state == GameStates.Normal)
+            if (StopTimeMech.state == GameStates.Normal && !enemy.burned)
+            {
+                soundPlayer.PlayOneShot(shootSound, ShotVolume);
                 spawnBullet();
+            }
         }
     }
 

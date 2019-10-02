@@ -18,6 +18,8 @@ TagManager:
   - PlayerBullet
   - StopTrigger
   - sp
+  - hands
+  - HealthMachine
   layers:
   - Default
   - TransparentFX

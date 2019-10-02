@@ -11,11 +11,12 @@ public class PlayerInventory : MonoBehaviour
 
     public GameObject knife;
     public GameObject pistol;
+    public GameObject NoGunHands;
     GameObject ar;
 
     void Start()
     {
-        
+        NoGunHands = GameObject.FindWithTag("hands");
 
     }
 
@@ -29,6 +30,7 @@ public class PlayerInventory : MonoBehaviour
         if (Pistol)
         {
             pistol.SetActive(true);
+            NoGunHands.SetActive(false);
         }
 
     }
