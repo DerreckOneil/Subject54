@@ -30,7 +30,7 @@ public class EnemyStats : MonoBehaviour
         if (health <= 0)
         {
             print("I'm dead");
-
+            PlayerStats.KIAs += .1f;
             Destroy(gameObject);
         }
     }

@@ -109,8 +109,9 @@ public class PlayerShoot : MonoBehaviour
     {
         
         gunReload.SetTrigger("MeleeHit");
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(0.78f);
         Instantiate(fireBall, fbSpawnPoint.transform.position, fbSpawnPoint.transform.rotation);
+        PlayerStats.energy--;
         fire = true;
     }
 }

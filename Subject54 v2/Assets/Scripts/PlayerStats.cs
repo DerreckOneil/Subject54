@@ -10,6 +10,7 @@ public class PlayerStats : MonoBehaviour
     public static int health;
     public static int score;
     public static int energy;
+    public static float KIAs;
     GameObject Player;
 
     Text healthText;
@@ -51,7 +52,7 @@ public class PlayerStats : MonoBehaviour
         if (Time.fixedTime % 1 ==0 && PlayerStats.energy >= 1 && StopTimeMech.state == GameStates.TimeStop)
         {
             print("Decrease player energy!");
-            PlayerStats.energy--;
+            //PlayerStats.energy--;
         }
 
         }

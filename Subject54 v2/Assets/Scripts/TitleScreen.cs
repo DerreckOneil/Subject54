@@ -21,8 +21,17 @@ public class TitleScreen : MonoBehaviour
     {
         SceneManager.LoadScene("StartGame");
     }
+
+    public void OnControlsButton()
+    {
+        SceneManager.LoadScene("Controls");
+    }
     public void OnQuitButton()
     {
         Application.Quit(0);
+    }
+    public void OnBackToTitleScreenButton()
+    {
+        SceneManager.LoadScene("TitleScreen");
     }
 }

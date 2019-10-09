@@ -70,7 +70,7 @@ public class PlayerInteraction : MonoBehaviour
             if(rayHit.collider.gameObject.tag == "HealthMachine")
             {
                 VendingText.text = "Left Click To Buy 10 Health For: " + healthPrice + " Score.";
-                if(Input.GetKeyDown(KeyCode.Mouse0) && PlayerStats.score > (PlayerStats.score - healthPrice))
+                if(Input.GetKeyDown(KeyCode.Mouse0) && (PlayerStats.score >= healthPrice))
                 {
                     PlayerStats.health += 10;
                     PlayerStats.score -= healthPrice;
