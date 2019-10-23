@@ -76,6 +76,7 @@ public class ShootButStopBefore : MonoBehaviour
             print("I hit the target");
             
         }
-        Destroy(gameObject);
+        if(!(gameObject.tag == "Fire"))
+            Destroy(gameObject);
     }
 }

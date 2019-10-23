@@ -104,7 +104,7 @@ public class StopTimeMech : MonoBehaviour
     }
     void decrMeter()
     {
-        if (Time.fixedTime % 1 == 0 && Time.fixedTime != 0 && state == GameStates.TimeStop && Meter.value > 0)
+        if (Time.fixedTime % 1 == 0 && state == GameStates.TimeStop && Meter.value > 0)
         {
             print("decrease my meter!!!");
             Meter.value -= .1f;

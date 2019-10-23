@@ -54,6 +54,19 @@ public class EnemyStats : MonoBehaviour
             StartCoroutine(beforeDeath());
         }
     }
+    void OnTriggerEnter(Collider coll)
+    {
+        print("I hit: " + coll.name);
+        if (coll.gameObject.tag == "PlayerFire")
+        {
+            print("Burned!!! Instant Death!");
+            burned = true;
+            fireGO.SetActive(true);
+            fireGO2.SetActive(true);
+            gun.SetActive(false);
+            StartCoroutine(beforeDeath());
+        }
+    }
 
     IEnumerator beforeDeath()
     {

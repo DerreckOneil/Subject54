@@ -20,6 +20,7 @@ TagManager:
   - sp
   - hands
   - HealthMachine
+  - PlayerFire
   layers:
   - Default
   - TransparentFX

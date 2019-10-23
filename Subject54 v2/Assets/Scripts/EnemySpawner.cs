@@ -9,6 +9,7 @@ public class EnemySpawner : MonoBehaviour
 
 
     GameObject[] numEnemies;
+    
     int numE;
 
     public static int wave;
@@ -27,6 +28,7 @@ public class EnemySpawner : MonoBehaviour
         spawnPoint = GameObject.FindGameObjectsWithTag("sp");
         firstEnemy = GameObject.FindWithTag("Target");
         firstEnemy.SetActive(false);
+        numE = 1;
     }
 
     // Update is called once per frame
@@ -48,7 +50,11 @@ public class EnemySpawner : MonoBehaviour
         {
             waveEnd = true;
             print("there are no more enemies!" );
-            
+            if(wave == 4)
+            {
+                print("two enemies per spawn");
+                numE = 2; //two enemies per spawn
+            }
             StartCoroutine(newRoundPause());
             //spawnEnemy();
         }
@@ -61,6 +67,58 @@ public class EnemySpawner : MonoBehaviour
         print("wait!");
         yield return new WaitForSeconds(2);
         print("Okay, new round");
+
+        switch (numE)
+        {
+            case 1:
+                if (waveEnd)
+                {
+                    for (int i = 0; i < spawnPoint.Length; i++)
+                    {
+                        yield return new WaitForSeconds(1);
+                        Instantiate(enemyPrefab, spawnPoint[i].transform.position, spawnPoint[i].transform.rotation);
+
+                    }
+                }
+                print("spawned!");
+
+                waveEnd = false;
+                wave++;
+                waited = true;
+                break;
+            case 2:
+                if (waveEnd)
+                {
+                    for (int i = 0; i < spawnPoint.Length; i++)
+                    {
+                        yield return new WaitForSeconds(1);
+                        Instantiate(enemyPrefab, spawnPoint[i].transform.position, spawnPoint[i].transform.rotation);
+
+                    }
+                }
+
+                yield return new WaitForSeconds(2);
+
+                if (waveEnd)
+                {
+                    for (int i = 0; i < spawnPoint.Length; i++)
+                    {
+                        yield return new WaitForSeconds(1);
+                        Instantiate(enemyPrefab, spawnPoint[i].transform.position, spawnPoint[i].transform.rotation);
+
+                    }
+                }
+                print("spawned!");
+
+                waveEnd = false;
+                wave++;
+                waited = true;
+
+                break;
+
+        }
+
+        /*
         if (waveEnd)
         {
             for (int i = 0; i < spawnPoint.Length; i++)
@@ -75,5 +133,6 @@ public class EnemySpawner : MonoBehaviour
         waveEnd = false;
         wave++;
         waited = true;
+        */
     }
 }

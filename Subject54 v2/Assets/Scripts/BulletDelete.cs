@@ -23,4 +23,13 @@ public class BulletDelete : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    void OnCollisionEnter(Collision coll)
+    {
+        if (coll.gameObject.tag == "PlayerBullet")
+        {
+            print("I collided with myself!");
+            Destroy(coll.gameObject);
+        }
+    }
 }

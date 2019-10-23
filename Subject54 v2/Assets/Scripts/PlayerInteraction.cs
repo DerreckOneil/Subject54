@@ -61,7 +61,7 @@ public class PlayerInteraction : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
                     print("Pistol Aquired");
-                    PlayerInventory.Pistol = true;
+                    
                     GunPickUp.SetTrigger("GunPickUp");
                     StartCoroutine(gunPickUp());
 
@@ -106,9 +106,12 @@ public class PlayerInteraction : MonoBehaviour
 
     IEnumerator gunPickUp()
     {
+        yield return new WaitForSeconds(.1f);
+        PlayerInventory.Pistol = true;
         print("Picked Up Pistol");
         yield return new WaitForSeconds(2);
         print("Go Back to Idle");
         backToIdle.SetTrigger("BackToIdle");
+        
     }
 }

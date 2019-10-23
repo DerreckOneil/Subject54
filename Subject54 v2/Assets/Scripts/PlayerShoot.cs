@@ -40,9 +40,13 @@ public class PlayerShoot : MonoBehaviour
     }
 
     // Update is called once per frame
+
+    
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Mouse0) && PlayerInventory.Pistol)
+        
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && PlayerInventory.Pistol)
         {
             print("Shoot!");
             if (pistolMag <= 0 && stopShooting == false)
@@ -59,19 +63,25 @@ public class PlayerShoot : MonoBehaviour
 
             if (!stopShooting)
             {
-                spawnBullet();
+                StartCoroutine(shootBullet());
                 pistolMag--;
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.R) && PlayerInventory.Pistol)
+        {
+            stopShooting = true;
+            waiting = true;
+            StartCoroutine(quickPause());
+        }
 
         if (Input.GetKeyDown(KeyCode.Mouse2) && PlayerInventory.Pistol && PlayerStats.energy > 1 && stopShooting == false)
         {
             print("shoot Fireball!");
-            if (fire)
-            {
-                StartCoroutine(shootFireball());
-            }
+                if (fire)
+                {
+                    StartCoroutine(shootFireball());
+                }
             
         }
 
@@ -84,8 +94,11 @@ public class PlayerShoot : MonoBehaviour
             pistolText.text = "";
         }
     }
+
+
     void spawnBullet()
     {
+        print("spawning bullet");
         Instantiate(playerBullet, spawnPoint.transform.position, spawnPoint.transform.rotation);
     }
 
@@ -96,7 +109,7 @@ public class PlayerShoot : MonoBehaviour
         
         soundPlayer.PlayOneShot(reloadSound, ShotVolume);
         gunReload.SetTrigger("Reloading");
-        yield return new WaitForSeconds(2.7f);
+        yield return new WaitForSeconds(2.6f);
         pistolMag = 7;
         gunReload.SetTrigger("BackToIdle");
         Debug.Log("Ok...start shooting again");
@@ -109,9 +122,20 @@ public class PlayerShoot : MonoBehaviour
     {
         
         gunReload.SetTrigger("MeleeHit");
-        yield return new WaitForSeconds(0.78f);
+        yield return new WaitForSeconds(0.85f);
         Instantiate(fireBall, fbSpawnPoint.transform.position, fbSpawnPoint.transform.rotation);
         PlayerStats.energy--;
         fire = true;
+    }
+    IEnumerator shootBullet()
+    {
+        print("going to Corotine...");
+        gunReload.SetTrigger("PistolShoot");
+        stopShooting = true;
+        spawnBullet();
+        yield return new WaitForSeconds(0.1f);
+        gunReload.SetTrigger("BackToIdle");
+        stopShooting = false;
+
     }
 }
