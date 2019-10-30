@@ -19,7 +19,11 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField]
     private Text VendingText;
 
+    [SerializeField]
+    private CameraShake cameraShakeScript;
+
     public static int hits;
+    public static bool playerHit;
     int healthPrice = 1000;
 
     public Animator backToIdle;
@@ -28,6 +32,7 @@ public class PlayerInteraction : MonoBehaviour
     void Start()
     {
         //hitText = Text.FindObjectOfType<Text>();
+        cameraShakeScript.GetComponent<CameraShake>().enabled = false;
         VendingText.text = "";
     }
 
@@ -87,12 +92,17 @@ public class PlayerInteraction : MonoBehaviour
             VendingText.text = "";
         }
 
+        if(playerHit)
+        {
+            StartCoroutine(PlayerHitWait());
+        }
+
     }
 
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
+        
         print("Player hit!" + hit.gameObject.name);
-
         if(hit.gameObject.tag == "Goal")
         {
             print("Reached Goal!!!");
@@ -113,5 +123,16 @@ public class PlayerInteraction : MonoBehaviour
         print("Go Back to Idle");
         backToIdle.SetTrigger("BackToIdle");
         
+    }
+    IEnumerator PlayerHitWait()
+    {
+        print("Turning the script on.");
+        cameraShakeScript.enabled = true;
+        yield return new WaitForSeconds(.5f);
+        print("Turning the script off.");
+        cameraShakeScript.enabled = false;
+
+
+        playerHit = false;
     }
 }

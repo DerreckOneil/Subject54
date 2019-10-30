@@ -29,7 +29,7 @@ public class Movement : MonoBehaviour
         {
             print("I hit the Player!");
             PlayerStats.health--;
-
+            PlayerInteraction.playerHit = true;
         }
         if(coll.gameObject.tag == "Target")
         {

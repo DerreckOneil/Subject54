@@ -20,14 +20,19 @@ public class EnemySpawner : MonoBehaviour
     bool firstWaveStart;
 
     public GameObject enemyPrefab;
-    GameObject firstEnemy;
+
+    [SerializeField]
+    private GameObject firstEnemy;
+    [SerializeField]
+    private Transform FEsp;
     // Start is called before the first frame update
     void Start()
     {
         wave++;
         spawnPoint = GameObject.FindGameObjectsWithTag("sp");
-        firstEnemy = GameObject.FindWithTag("Target");
-        firstEnemy.SetActive(false);
+        //firstEnemy = GameObject.FindWithTag("Target");
+        //firstEnemy.SetActive(false);
+
         numE = 1;
     }
 
@@ -41,9 +46,11 @@ public class EnemySpawner : MonoBehaviour
         
         if(PlayerInventory.Pistol && firstEnemy != null)
         {
-            firstEnemy.SetActive(true);
+            Instantiate(firstEnemy, FEsp.transform.position, FEsp.transform.rotation);
+            //firstEnemy.SetActive(true);
             firstWaveStart = true;
             numEnemies = GameObject.FindGameObjectsWithTag("Target");
+            firstEnemy = null;
         }
         
         if (numEnemies.Length <= 0 && waveEnd == false && firstWaveStart)

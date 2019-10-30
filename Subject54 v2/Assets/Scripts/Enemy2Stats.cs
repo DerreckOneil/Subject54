@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyStats : MonoBehaviour
+public class Enemy2Stats : MonoBehaviour
 {
     [SerializeField]
     private int health = 1;
@@ -32,8 +32,8 @@ public class EnemyStats : MonoBehaviour
         if (health <= 0)
         {
             print("I'm dead");
-            
-            
+            dead = true;
+
             PlayerStats.KIAs += .1f;
             Destroy(gameObject);
         }
@@ -42,7 +42,7 @@ public class EnemyStats : MonoBehaviour
     void OnCollisionEnter(Collision coll)
     {
         print("enemyHIT!");
-        if(coll.gameObject.tag == "PlayerBullet")
+        if (coll.gameObject.tag == "PlayerBullet")
         {
             print("I was hit by player!");
             //health--;
@@ -50,7 +50,7 @@ public class EnemyStats : MonoBehaviour
             StartCoroutine(beforeDeath());
             PlayerStats.score += 100;
         }
-        if(coll.gameObject.tag == "Fire")
+        if (coll.gameObject.tag == "Fire")
         {
             print("Burned!!! Instant Death!");
             burned = true;
@@ -76,10 +76,9 @@ public class EnemyStats : MonoBehaviour
 
     IEnumerator beforeDeath()
     {
+        dead = true;
         yield return new WaitForSeconds(1.5f);
-        //dead = true;
         health = 0;
-        
         PlayerStats.score += 150;
     }
 }

@@ -14,10 +14,12 @@ public class EnemyShoot : MonoBehaviour
     public float ShotVolume;
 
     EnemyStats enemy;
+    Enemy2Stats enemy2;
     // Start is called before the first frame update
     void Start()
     {
         enemy = this.gameObject.GetComponent<EnemyStats>();
+        enemy2 = this.gameObject.GetComponent<Enemy2Stats>();
     }
 
     // Update is called once per frame
@@ -28,10 +30,22 @@ public class EnemyShoot : MonoBehaviour
         if(time % 1 == 0 && time != 0)
         {
             print("Every one second");
-            if (StopTimeMech.state == GameStates.Normal && !enemy.burned)
+            if (enemy != null)
             {
-                soundPlayer.PlayOneShot(shootSound, ShotVolume);
-                spawnBullet();
+                if (StopTimeMech.state == GameStates.Normal && !enemy.burned)
+                {
+                    soundPlayer.PlayOneShot(shootSound, ShotVolume);
+                    spawnBullet();
+                }
+                
+            }
+            if (enemy2 != null)
+            {
+                if (StopTimeMech.state == GameStates.Normal && !enemy2.burned)
+                {
+                    soundPlayer.PlayOneShot(shootSound, ShotVolume);
+                    spawnBullet();
+                }
             }
         }
     }
