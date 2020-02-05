@@ -22,12 +22,22 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField]
     private CameraShake cameraShakeScript;
 
+    [SerializeField] private AudioSource soundPlayer;
+    [SerializeField] private AudioClip damageSound;
+    
+
+    [Range(0.0f, 1.0f)]
+    public float SetVolume;
+
+
     public static int hits;
     public static bool playerHit;
     int healthPrice = 1000;
 
     public Animator backToIdle;
     public Animator GunPickUp;
+
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -60,6 +70,15 @@ public class PlayerInteraction : MonoBehaviour
                     
                 }
             }
+            if (rayHit.collider.gameObject.tag == "Door")
+            {
+                print("I'm looking at the door");
+                if(Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    rayHit.collider.gameObject.transform.parent.gameObject.transform.Rotate(0, -270.0f, 0);
+                }
+
+            }
             if(rayHit.collider.gameObject.tag == "Pistol")
             {
                 print("I'm looking at my Pistol");
@@ -79,7 +98,7 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     PlayerStats.health += 10;
                     PlayerStats.score -= healthPrice;
-                    healthPrice += 300;
+                    healthPrice += 1000;
                 }
                 
             }
@@ -114,20 +133,26 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
+    
+
     IEnumerator gunPickUp()
     {
-        yield return new WaitForSeconds(.1f);
-        PlayerInventory.Pistol = true;
+        //yield return new WaitForSeconds(.1f);
+        
         print("Picked Up Pistol");
+        PlayerInventory.Pistol = true;
         yield return new WaitForSeconds(2);
         print("Go Back to Idle");
+        yield return new WaitForSeconds(1);
         backToIdle.SetTrigger("BackToIdle");
         
+
     }
     IEnumerator PlayerHitWait()
     {
         print("Turning the script on.");
         cameraShakeScript.enabled = true;
+        soundPlayer.PlayOneShot(damageSound, SetVolume);
         yield return new WaitForSeconds(.5f);
         print("Turning the script off.");
         cameraShakeScript.enabled = false;

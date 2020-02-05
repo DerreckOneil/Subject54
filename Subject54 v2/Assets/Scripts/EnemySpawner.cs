@@ -15,7 +15,7 @@ public class EnemySpawner : MonoBehaviour
     public static int wave;
     public Text waveText;
 
-    bool waveEnd;
+    public bool waveEnd;
     bool waited;
     bool firstWaveStart;
 
@@ -25,6 +25,8 @@ public class EnemySpawner : MonoBehaviour
     private GameObject firstEnemy;
     [SerializeField]
     private Transform FEsp;
+
+    bool increasedPos;
     // Start is called before the first frame update
     void Start()
     {
@@ -61,6 +63,11 @@ public class EnemySpawner : MonoBehaviour
             {
                 print("two enemies per spawn");
                 numE = 2; //two enemies per spawn
+                if (!increasedPos)
+                {
+                    Enemy2Stats.maxPosibility += 2;
+                    increasedPos = true;
+                }
             }
             StartCoroutine(newRoundPause());
             //spawnEnemy();
@@ -125,6 +132,11 @@ public class EnemySpawner : MonoBehaviour
 
         }
 
+        if(PlayerStats.health <=0)
+        {
+            firstWaveStart = true;
+            Enemy2Stats.maxPosibility = 5;
+        }
         /*
         if (waveEnd)
         {

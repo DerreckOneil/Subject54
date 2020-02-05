@@ -45,6 +45,9 @@ MonoBehaviour:
   spawnPoint: {fileID: 1883880383}
   EnemyBullet: {fileID: 1921065271249530, guid: 2c91b29d1ea8eff44941f8af16f953c8,
     type: 3}
+  soundPlayer: {fileID: 0}
+  shootSound: {fileID: 0}
+  ShotVolume: 0
 --- !u!1001 &4323525674719167626
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52,10 +55,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3443087026915682666, guid: e79b756db1bb994478104a85dfd5714a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3443087026915682674, guid: e79b756db1bb994478104a85dfd5714a,
         type: 3}
       propertyPath: m_Name
-      value: Beta Pistol
+      value: Pistol
       objectReference: {fileID: 0}
     - target: {fileID: 3443087026916111698, guid: e79b756db1bb994478104a85dfd5714a,
         type: 3}
@@ -117,12 +125,12 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 5c2fff2cf423d9040b26e6677dd49135, type: 2}
-    - target: {fileID: 3443087026917881784, guid: e79b756db1bb994478104a85dfd5714a,
+    - target: {fileID: 3443087026917881778, guid: e79b756db1bb994478104a85dfd5714a,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 5c2fff2cf423d9040b26e6677dd49135, type: 2}
-    - target: {fileID: 3443087026917881778, guid: e79b756db1bb994478104a85dfd5714a,
+    - target: {fileID: 3443087026917881784, guid: e79b756db1bb994478104a85dfd5714a,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

@@ -20,5 +20,15 @@ public class SpecialAbilityEffects : MonoBehaviour
     void OnCollisionEnter(Collision coll)
     {
         Instantiate(fire, gameObject.transform.position, gameObject.transform.rotation);
+        Destroy(gameObject);
+    }
+    void OnTriggerEnter(Collider coll)
+    {
+        if (coll.gameObject.tag != "Player" && coll.gameObject.tag != "StopTrigger" && coll.gameObject.name != "PlayerHitbox")
+        {
+            print("Destroy Fireball! Because of: " + coll.gameObject.name + " with tag: " + coll.gameObject.tag);
+            Instantiate(fire, gameObject.transform.position, gameObject.transform.rotation);
+            Destroy(gameObject);
+        }
     }
 }

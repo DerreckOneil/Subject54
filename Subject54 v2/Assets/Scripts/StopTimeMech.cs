@@ -15,12 +15,18 @@ public class StopTimeMech : MonoBehaviour
 
     float meterDecr = .1f;
 
+    [SerializeField]
+    private float Imgmin;
+    [SerializeField]
+    private float Imgmax;
+
     public static GameStates state;
 
     void Awake()
     {
         image = GameObject.FindWithTag("img");
         image.gameObject.SetActive(false);
+        Meter.value = Meter.maxValue;
 
     }
     // Start is called before the first frame update
@@ -75,9 +81,12 @@ public class StopTimeMech : MonoBehaviour
             
             
 
-                Debug.Log("Stop Time");
-                state = GameStates.TimeStop;
-                image.SetActive(true);
+            Debug.Log("Stop Time");
+            StartCoroutine(stopTimeTransition());
+            
+            
+            state = GameStates.TimeStop;
+            
                 
 
 
@@ -102,17 +111,59 @@ public class StopTimeMech : MonoBehaviour
         yield return new WaitForSeconds(Meter.value);
 
     }
+
+    IEnumerator stopTimeTransition()
+    {
+        image.SetActive(true);
+        image.transform.localScale = new Vector3(0, 0, 0);
+        print("Local scale: " + image.transform.localScale);
+        Time.timeScale = .5f;
+        float imgx;
+        float imgy;
+        float imgz;
+        while (image.transform.localScale != new Vector3(2.0f, 2.0f, 2.0f))
+        {
+            yield return new WaitForSeconds(.01f);
+            imgx = image.transform.localScale.x;
+            imgy = image.transform.localScale.y;
+            imgz = image.transform.localScale.z;
+            image.transform.localScale = new Vector3(imgx += .1f, imgy += .1f, imgz += .1f);
+        }
+        Time.timeScale = 1;
+    }
+
+    IEnumerator endStopTimeTransition()
+    {
+        print("Local scale: " + image.transform.localScale);
+        Time.timeScale = .5f;
+        float imgx;
+        float imgy;
+        float imgz;
+        while (image.transform.localScale != new Vector3(0, 0, 0))
+        {
+            yield return new WaitForSeconds(.01f);
+            imgx = image.transform.localScale.x;
+            imgy = image.transform.localScale.y;
+            imgz = image.transform.localScale.z;
+            image.transform.localScale = new Vector3(imgx -= .1f, imgy -= .1f, imgz -= .1f);
+        }
+
+        Time.timeScale = 1;
+        image.SetActive(false);
+
+    }
     void decrMeter()
     {
-        if (Time.fixedTime % 1 == 0 && state == GameStates.TimeStop && Meter.value > 0)
+        if ((int)Time.fixedTime % 1 == 0 && state == GameStates.TimeStop && Meter.value > 0)
         {
             print("decrease my meter!!!");
-            Meter.value -= .1f;
+            Meter.value -= .1f * Time.deltaTime;
         }
         if(Meter.value <= 0)
         {
             state = GameStates.Normal;
-            image.SetActive(false);
+            StartCoroutine(endStopTimeTransition());
+            //image.SetActive(false);
             PlayerStats.KIAs = 0;
         }
     }
@@ -139,7 +190,7 @@ public class StopTimeMech : MonoBehaviour
     void normalTime()
     {
         Movement.timeFrame = 1;
-        Meter.value = PlayerStats.KIAs;
+        Meter.value = PlayerStats.KIAs;  // CHANGE ME BACK!!!!!/////////////////////        
         if (ps != null)
         {
             for (int i = 0; i < ps.Length; i++)

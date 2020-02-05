@@ -14,7 +14,12 @@ public class EnemyStats : MonoBehaviour
     private GameObject fireGO2;
     [SerializeField]
     private GameObject gun;
-
+    [SerializeField]
+    private GameObject ammoMag;
+    [SerializeField]
+    private int explosiveForce;
+    [SerializeField]
+    private int explosiveRadius;
 
     public bool burned;
     public bool dead;
@@ -72,14 +77,31 @@ public class EnemyStats : MonoBehaviour
             gun.SetActive(false);
             StartCoroutine(beforeDeath());
         }
+        if (coll.gameObject.tag == "Grab")
+        {
+            print("Hit by throwable");
+            StartCoroutine(beforeDeath());
+            //health = 0;
+            PlayerStats.score += 150;
+        }
+        if(coll.gameObject.tag == "PlayerHB")
+        {
+            print("I ran into the player!");
+            coll.gameObject.GetComponent<Rigidbody>().AddExplosionForce(explosiveForce, transform.position, explosiveRadius);
+        }
     }
 
     IEnumerator beforeDeath()
     {
         yield return new WaitForSeconds(1.5f);
+        ammoSpawn();
         //dead = true;
         health = 0;
         
         PlayerStats.score += 150;
+    }
+    void ammoSpawn()
+    {
+        Instantiate(ammoMag, gameObject.transform.position, gameObject.transform.rotation);
     }
 }

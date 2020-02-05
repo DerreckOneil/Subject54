@@ -32,6 +32,18 @@ public class PlayerInventory : MonoBehaviour
             pistol.SetActive(true);
             NoGunHands.SetActive(false);
         }
+        if (PlayerShoot.empty && Pistol)
+        {
+            pistol.SetActive(false);
+            Pistol = false;
+            NoGunHands.SetActive(true);
+        }
+        if(!PlayerShoot.empty && !Pistol && EnemySpawner.wave != 1)
+        {
+            Pistol = true;
+            pistol.SetActive(true);
+            NoGunHands.SetActive(false);
+        }
 
     }
     

@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class CameraShake : MonoBehaviour
 {
     // Transform of the camera to shake. Grabs the gameObject's transform
     // if null.
-    public Transform camTransform;
+    [SerializeField]
+    private Transform camTransform;
+    [SerializeField]
+    private Image whiteImg;
+
 
     // How long the object should shake for.
     public float shakeDuration = 0f;
@@ -20,6 +24,7 @@ public class CameraShake : MonoBehaviour
 
     void Awake()
     {
+        whiteImg.enabled = false;
         if (camTransform == null)
         {
             camTransform = GetComponent(typeof(Transform)) as Transform;
@@ -36,7 +41,7 @@ public class CameraShake : MonoBehaviour
         if (shakeDuration > 0 )
         {
             camTransform.localPosition = originalPos + Random.insideUnitSphere * shakeAmount;
-
+            StartCoroutine(screenFlash());
             //shakeDuration -= Time.deltaTime * decreaseFactor;
         }
         else
@@ -44,5 +49,21 @@ public class CameraShake : MonoBehaviour
             shakeDuration = 0f;
             camTransform.localPosition = originalPos;
         }
+    }
+
+    IEnumerator screenFlash()
+    {
+        whiteImg.enabled = true;
+        yield return new WaitForSeconds(.1f);
+        whiteImg.enabled = false;
+        yield return new WaitForSeconds(.1f);
+        whiteImg.enabled = true;
+        yield return new WaitForSeconds(.1f);
+        whiteImg.enabled = false;
+        yield return new WaitForSeconds(.1f);
+        whiteImg.enabled = true;
+        yield return new WaitForSeconds(.1f);
+        whiteImg.enabled = false;
+
     }
 }

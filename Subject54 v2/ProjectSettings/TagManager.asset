@@ -21,6 +21,11 @@ TagManager:
   - hands
   - HealthMachine
   - PlayerFire
+  - Grab
+  - Mag
+  - EP
+  - Door
+  - PlayerHB
   layers:
   - Default
   - TransparentFX

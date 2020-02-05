@@ -50,12 +50,14 @@ public class EnemyMovement : MonoBehaviour
         }
         if (StopTimeMech.state == GameStates.Normal)
         {
+            EnemyAnimEngine.enabled = true;
             enemyNav.speed = 1.5f;
             FollowPlayer();
         }
         else
         {
             enemyNav.speed = 0;
+            EnemyAnimEngine.enabled = false;
         }
 
         if (StopTimeMech.state == GameStates.Normal)
