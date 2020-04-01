@@ -9,7 +9,11 @@ public class BuildBuddy : MonoBehaviour {
 	[MenuItem("Pollati Utilities/Build Buddy")]
 	public static void BuildGame () {
 		BuildTarget[] targets = {
+#if UNITY_2019_2_OR_NEWER
+			BuildTarget.StandaloneLinux64,
+#else
 			BuildTarget.StandaloneLinuxUniversal,
+#endif
 			BuildTarget.StandaloneOSX,
 			BuildTarget.StandaloneWindows,
 			BuildTarget.StandaloneWindows64
@@ -51,7 +55,7 @@ public class BuildBuddy : MonoBehaviour {
 				UnityEngine.Debug.Log ("Building"+targetPrefix[i]+ " Complete!");
 			} catch(Exception e) {
 				// Failed...
-				UnityEngine.Debug.Log ("Building"+targetPrefix[i]+ " FAILED!");
+				UnityEngine.Debug.Log ("Building"+targetPrefix[i]+ " FAILED! " + e.ToString());
 				failures += "\nFailed Building"+targetPrefix[i];
 			}
 		}

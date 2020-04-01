@@ -22,11 +22,15 @@ public class StopTimeMech : MonoBehaviour
 
     public static GameStates state;
 
+    [SerializeField] AudioSource source;
+    float sourceOrigPitch;
+
     void Awake()
     {
         image = GameObject.FindWithTag("img");
         image.gameObject.SetActive(false);
         Meter.value = Meter.maxValue;
+        sourceOrigPitch = source.pitch;
 
     }
     // Start is called before the first frame update
@@ -68,33 +72,13 @@ public class StopTimeMech : MonoBehaviour
 
        if(Input.GetKeyDown(KeyCode.Mouse1) && Meter.value == Meter.maxValue)
        {
-            /*if (state == GameStates.TimeStop)
-            {
-
-                state = GameStates.Normal;
-                image.SetActive(false);
-                PlayerStats.KIAs = 0;
-                
-
-            }
-            */
-            
-            
-
+           
             Debug.Log("Stop Time");
             StartCoroutine(stopTimeTransition());
             
             
             state = GameStates.TimeStop;
-            
-                
-
-
-            
-            
-
-             
-
+         
        }
        
 
@@ -114,6 +98,8 @@ public class StopTimeMech : MonoBehaviour
 
     IEnumerator stopTimeTransition()
     {
+
+        
         image.SetActive(true);
         image.transform.localScale = new Vector3(0, 0, 0);
         print("Local scale: " + image.transform.localScale);
@@ -123,6 +109,7 @@ public class StopTimeMech : MonoBehaviour
         float imgz;
         while (image.transform.localScale != new Vector3(2.0f, 2.0f, 2.0f))
         {
+            source.pitch = source.pitch / 2;
             yield return new WaitForSeconds(.01f);
             imgx = image.transform.localScale.x;
             imgy = image.transform.localScale.y;
@@ -134,6 +121,7 @@ public class StopTimeMech : MonoBehaviour
 
     IEnumerator endStopTimeTransition()
     {
+        
         print("Local scale: " + image.transform.localScale);
         Time.timeScale = .5f;
         float imgx;
@@ -141,6 +129,7 @@ public class StopTimeMech : MonoBehaviour
         float imgz;
         while (image.transform.localScale != new Vector3(0, 0, 0))
         {
+            source.pitch = source.pitch / 2;
             yield return new WaitForSeconds(.01f);
             imgx = image.transform.localScale.x;
             imgy = image.transform.localScale.y;

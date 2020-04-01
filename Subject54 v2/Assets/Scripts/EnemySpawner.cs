@@ -9,7 +9,7 @@ public class EnemySpawner : MonoBehaviour
 
 
     GameObject[] numEnemies;
-    
+
     int numE;
 
     public static int wave;
@@ -25,6 +25,7 @@ public class EnemySpawner : MonoBehaviour
     private GameObject firstEnemy;
     [SerializeField]
     private Transform FEsp;
+    [SerializeField] private GameObject SWATenemyprefab;
 
     bool increasedPos;
     // Start is called before the first frame update
@@ -45,21 +46,22 @@ public class EnemySpawner : MonoBehaviour
         numEnemies = GameObject.FindGameObjectsWithTag("Target");
 
         print("Enemy/enemies: " + numEnemies.Length);
-        
-        if(PlayerInventory.Pistol && firstEnemy != null)
+
+        if (PlayerInventory.Pistol && firstEnemy != null)
         {
             Instantiate(firstEnemy, FEsp.transform.position, FEsp.transform.rotation);
             //firstEnemy.SetActive(true);
             firstWaveStart = true;
+            print("first enemy spawned");
             numEnemies = GameObject.FindGameObjectsWithTag("Target");
             firstEnemy = null;
         }
-        
+
         if (numEnemies.Length <= 0 && waveEnd == false && firstWaveStart)
         {
             waveEnd = true;
-            print("there are no more enemies!" );
-            if(wave == 4)
+            print("there are no more enemies!");
+            if (wave == 4)
             {
                 print("two enemies per spawn");
                 numE = 2; //two enemies per spawn
@@ -74,7 +76,7 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    
+
     IEnumerator newRoundPause()
     {
         waited = false;
@@ -119,6 +121,7 @@ public class EnemySpawner : MonoBehaviour
                     {
                         yield return new WaitForSeconds(1);
                         Instantiate(enemyPrefab, spawnPoint[i].transform.position, spawnPoint[i].transform.rotation);
+                        Instantiate(SWATenemyprefab, spawnPoint[i].transform.position, spawnPoint[i].transform.rotation);
 
                     }
                 }
@@ -132,7 +135,7 @@ public class EnemySpawner : MonoBehaviour
 
         }
 
-        if(PlayerStats.health <=0)
+        if (PlayerStats.health <= 0)
         {
             firstWaveStart = true;
             Enemy2Stats.maxPosibility = 5;

@@ -27,10 +27,12 @@ public class GameEnvironment : MonoBehaviour
     float mLt;
 
     public static int currentTime;
+    private int getset;
     double currentTimeD;
     bool rotated;
     bool cap;
     bool changed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +42,18 @@ public class GameEnvironment : MonoBehaviour
         //moonLight.gameObject.SetActive(false);
     }
 
+    public int Getset
+    {
+        get
+        {
+            return getset;
+        }
+        set
+        {
+            getset = value;
+        }
+    }
+        
     // Update is called once per frame
     void Update()
     {

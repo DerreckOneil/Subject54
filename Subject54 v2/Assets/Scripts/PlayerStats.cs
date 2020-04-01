@@ -24,7 +24,7 @@ public class PlayerStats : MonoBehaviour
     {
         Player = GameObject.FindWithTag("Player");
         CPlayer = GameObject.FindWithTag("Player").GetComponent<CharacterController>();
-        print(CPlayer);
+        //print(CPlayer);
         if(SceneManager.GetActiveScene().name == "StartGame")
         {
             health = 15;

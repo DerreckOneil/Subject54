@@ -6,11 +6,16 @@ using UnityEngine.SceneManagement;
 public class ScreenLogic : MonoBehaviour
 {
     // Start is called before the first frame update
+    //PlayerShoot PSrefs;
     void Start()
     {
         if (SceneManager.GetActiveScene().name == "LoseScreen")
         {
             print("I'm at the end screen!");
+            PlayerInventory.Pistol = false;
+            print("pistol: " + PlayerInventory.Pistol);
+            //PSrefs.TotalBullets = 0;
+            PlayerShoot.pistolMag = 0;
             Cursor.visible = true;
         }
     }

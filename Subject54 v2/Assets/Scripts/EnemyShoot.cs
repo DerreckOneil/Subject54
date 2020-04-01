@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.ARFoundation;
 
 public class EnemyShoot : MonoBehaviour
 {
     public Transform spawnPoint;
     public GameObject EnemyBullet;
-
     public AudioSource soundPlayer;
     public AudioClip shootSound;
 
@@ -15,11 +15,13 @@ public class EnemyShoot : MonoBehaviour
 
     EnemyStats enemy;
     Enemy2Stats enemy2;
+    Enemy3Stats enemy3;
     // Start is called before the first frame update
     void Start()
     {
         enemy = this.gameObject.GetComponent<EnemyStats>();
         enemy2 = this.gameObject.GetComponent<Enemy2Stats>();
+        enemy3 = gameObject.GetComponent<Enemy3Stats>();
     }
 
     // Update is called once per frame
@@ -48,6 +50,8 @@ public class EnemyShoot : MonoBehaviour
                 }
             }
         }
+
+
     }
 
     void spawnBullet()

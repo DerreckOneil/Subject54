@@ -14,7 +14,7 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField]
     private GameObject fbSpawnPoint2;
 
-    int pistolMag = 0;
+    public static int pistolMag = 0;
     public int pistolBullets;
     int bulletsNeeded;
     public static bool empty;
@@ -48,7 +48,17 @@ public class PlayerShoot : MonoBehaviour
     }
 
     // Update is called once per frame
-
+    public int TotalBullets
+    {
+        get
+        {
+            return pistolMag;
+        }
+        set
+        {
+            pistolMag = value;
+        }
+    }
     
     void Update()
     {

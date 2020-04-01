@@ -26,6 +26,8 @@ TagManager:
   - EP
   - Door
   - PlayerHB
+  - EnemyMW
+  - Soldier
   layers:
   - Default
   - TransparentFX

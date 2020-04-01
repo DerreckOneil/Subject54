@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Enemy2Stats : MonoBehaviour
+public class Enemy3Stats : MonoBehaviour
 {
     [SerializeField]
     private int health = 1;
@@ -12,12 +13,10 @@ public class Enemy2Stats : MonoBehaviour
     private GameObject fireGO;
     [SerializeField]
     private GameObject fireGO2;
-    [SerializeField]
-    private GameObject gun;
+    
     [SerializeField]
     private GameObject ammoMag;
-    [SerializeField]
-    private GameObject myPivot;
+    
     [SerializeField]
     private int explosiveForce;
     [SerializeField]
@@ -27,10 +26,14 @@ public class Enemy2Stats : MonoBehaviour
     public bool burned;
     public bool dead;
     public static int maxPosibility = 5;
+
+    [SerializeField] private Slider healthBar;
     bool spawned;
+    int maxHealth;
     // Start is called before the first frame update
     void Start()
     {
+        maxHealth = health;
         //fireGO = GameObject.FindWithTag("Fire");
         fireGO.SetActive(false);
         fireGO2.SetActive(false);
@@ -39,14 +42,8 @@ public class Enemy2Stats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (health <= 0)
-        {
-            print("I'm dead");
-            dead = true;
-
-            PlayerStats.KIAs += .1f;
-            Destroy(gameObject);
-        }
+        healthBar.maxValue = maxHealth;
+        healthBar.value = health;
     }
 
     void OnCollisionEnter(Collision coll)
@@ -54,11 +51,21 @@ public class Enemy2Stats : MonoBehaviour
         print("enemyHIT!");
         if (coll.gameObject.tag == "PlayerBullet")
         {
-            print("I was hit by player!");
-            //health--;
-            gun.SetActive(false);
-            StartCoroutine(beforeDeath());
-            PlayerStats.score += 100;
+            print("I was hit by player!" + health);
+            health--;
+            //
+            
+            if (health <= 0)
+            {
+                print("I'm dead");
+               
+                StartCoroutine(beforeDeath());
+                PlayerStats.score += 100;
+                PlayerStats.KIAs += .1f;
+                
+            }
+            
+
         }
         /*
         if (coll.gameObject.tag == "Fire")
@@ -81,7 +88,7 @@ public class Enemy2Stats : MonoBehaviour
             burned = true;
             fireGO.SetActive(true);
             fireGO2.SetActive(true);
-            gun.SetActive(false);
+            //gun.SetActive(false);
             StartCoroutine(beforeDeath());
         }
         if (coll.gameObject.tag == "Fire")
@@ -90,25 +97,21 @@ public class Enemy2Stats : MonoBehaviour
             burned = true;
             fireGO.SetActive(true);
             fireGO2.SetActive(true);
-            gun.SetActive(false);
+            //gun.SetActive(false);
             StartCoroutine(beforeDeath());
         }
         if (coll.gameObject.tag == "Grab")
         {
             print("Hit by throwable");
-            gun.SetActive(false);
-            StartCoroutine(beforeDeath());
+            //gun.SetActive(false);
+            //StartCoroutine(beforeDeath());
         }
         if (coll.gameObject.tag == "PlayerHB")
         {
             CharacterController CPlayer = coll.gameObject.GetComponent<CharacterController>();
             print("I ran into the player!");
-            //CPlayer.Move(Vector3.back * 10);
-            //coll.gameObject.transform.parent.GetComponent<Rigidbody>().AddExplosionForce(explosiveForce, coll.gameObject.transform.position, explosiveRadius);
-            //coll.gameObject.transform.parent.GetComponent<CharacterController>().Move(Vector3.back * explosiveForce * Time.deltaTime);
+
             float Zpos = coll.gameObject.transform.position.z;
-            //coll.gameObject.transform.Translate(Vector3(coll.gameObject.transform.position.x, coll.gameObject.transform.position.y, Zpos -= (float)explosiveForce * Time.deltaTime)); 
-            //coll.gameObject.transform.parent.Translate(Vector3.back * explosiveForce * Time.deltaTime);
         }
     }
 
@@ -116,7 +119,7 @@ public class Enemy2Stats : MonoBehaviour
     {
         dead = true;
         yield return new WaitForSeconds(1.5f);
-        int randomNum = Random.Range(1,maxPosibility);
+        int randomNum = Random.Range(1, maxPosibility);
         ammoSpawn(randomNum);
         downFiveUnits();
         //yield return new WaitForSeconds(.5f);
@@ -128,43 +131,18 @@ public class Enemy2Stats : MonoBehaviour
     }
     void ammoSpawn(int rnum)
     {
-        
+
         if (dead)
         {
-            switch (rnum)
-            {
-                case 1:
-                    print("num 1");
-                    spawned = false;
-                    break;
-                case 2:
-                    if (!spawned)
-                    {
-                        Instantiate(ammoMag, myPivot.transform.position, myPivot.transform.rotation);
-                        print("num 2");
-                        spawned = true;
-                    }
-                    break;
-                case 3:
-                    print("num 3");
-                    spawned = false;
-                    break;
-                case 4:
-                    print("num 4");
-                    spawned = false;
-                    break;
-                case 5:
-                    print("num 5");
-                    spawned = false;
-                    break;
-            }
+            
+            Instantiate(ammoMag, transform.position, transform.rotation);      
             dead = false;
         }
 
     }
-     void downFiveUnits()
+    void downFiveUnits()
     {
-        for (int i = 0; i<10; i++)
+        for (int i = 0; i < 10; i++)
         {
             float posY;
             posY = transform.position.y;
