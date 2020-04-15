@@ -139,6 +139,7 @@ public class StopTimeMech : MonoBehaviour
 
         Time.timeScale = 1;
         image.SetActive(false);
+        source.pitch = sourceOrigPitch;
 
     }
     void decrMeter()

@@ -28,6 +28,7 @@ TagManager:
   - PlayerHB
   - EnemyMW
   - Soldier
+  - Exit
   layers:
   - Default
   - TransparentFX

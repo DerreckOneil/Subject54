@@ -13,7 +13,6 @@ public class PlayerStats : MonoBehaviour
     public static float KIAs;
     GameObject Player;
     CharacterController CPlayer;
-
     Text healthText;
     public Text EnergyText;
 
@@ -72,7 +71,11 @@ public class PlayerStats : MonoBehaviour
             print("Decrease player energy!");
             //PlayerStats.energy--;
         }
-
+        
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        
     }
 
     void endgame()

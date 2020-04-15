@@ -44,6 +44,8 @@ public class PlayerInteraction : MonoBehaviour
         //hitText = Text.FindObjectOfType<Text>();
         cameraShakeScript.GetComponent<CameraShake>().enabled = false;
         VendingText.text = "";
+        print("just started");
+        ResetAllStatics();
     }
 
     // Update is called once per frame
@@ -76,10 +78,16 @@ public class PlayerInteraction : MonoBehaviour
                 if(Input.GetKeyDown(KeyCode.Mouse0))
                 {
                     rayHit.collider.gameObject.transform.parent.gameObject.transform.Rotate(0, -270.0f, 0);
+                    SceneManager.LoadScene("GameLore");
                 }
 
             }
-            if(rayHit.collider.gameObject.tag == "Pistol")
+            if (rayHit.collider.gameObject.tag == "Exit")
+            {
+                SceneManager.LoadScene("StartGame");
+                return;
+            }
+            if (rayHit.collider.gameObject.tag == "Pistol")
             {
                 print("I'm looking at my Pistol");
                 if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -159,5 +167,11 @@ public class PlayerInteraction : MonoBehaviour
 
 
         playerHit = false;
+    }
+    void ResetAllStatics()
+    {
+        PlayerInventory.Pistol = false;
+        EnemySpawner.wave = 0;
+       
     }
 }
