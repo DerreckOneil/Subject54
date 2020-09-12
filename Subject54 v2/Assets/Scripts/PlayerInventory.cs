@@ -32,19 +32,27 @@ public class PlayerInventory : MonoBehaviour
             pistol.SetActive(true);
             NoGunHands.SetActive(false);
         }
+        else
+        {
+            print("Pistol is false, I should'nt have a gun");
+            pistol.SetActive(false);
+        }
         if (PlayerShoot.empty && Pistol)
         {
             pistol.SetActive(false);
             Pistol = false;
             NoGunHands.SetActive(true);
         }
+        /* Why is this in here? What is it's purpose?
         if(!PlayerShoot.empty && !Pistol && EnemySpawner.wave != 1)
         {
+            
+            print("I set the gun to true");
             Pistol = true;
             pistol.SetActive(true);
             NoGunHands.SetActive(false);
         }
-
+        */
     }
     
 }

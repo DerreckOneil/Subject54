@@ -37,7 +37,7 @@ public class PlayerInteraction : MonoBehaviour
     public Animator backToIdle;
     public Animator GunPickUp;
 
-    
+    public static int waveBeforeILeft;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,11 +46,17 @@ public class PlayerInteraction : MonoBehaviour
         VendingText.text = "";
         print("just started");
         ResetAllStatics();
+        if(EnemySpawner.wave == 0)
+        {
+            print("Wave before I left is zero");
+            waveBeforeILeft = 0;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        print("wave before I left: " + waveBeforeILeft);
         Debug.DrawRay(transform.position, transform.forward, Color.red);
         if (hitText != null)
             hitText.text = "Hits: " + hits;
@@ -77,6 +83,7 @@ public class PlayerInteraction : MonoBehaviour
                 print("I'm looking at the door");
                 if(Input.GetKeyDown(KeyCode.Mouse0))
                 {
+                    waveBeforeILeft = EnemySpawner.wave - 1; //-1 because of an exploit
                     rayHit.collider.gameObject.transform.parent.gameObject.transform.Rotate(0, -270.0f, 0);
                     SceneManager.LoadScene("GameLore");
                 }
@@ -171,7 +178,8 @@ public class PlayerInteraction : MonoBehaviour
     void ResetAllStatics()
     {
         PlayerInventory.Pistol = false;
-        EnemySpawner.wave = 0;
+
+        //EnemySpawner.wave = 0;
        
     }
 }

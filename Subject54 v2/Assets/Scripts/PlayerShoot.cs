@@ -29,6 +29,7 @@ public class PlayerShoot : MonoBehaviour
     public AudioClip shootSound;
     public AudioClip clickSound;
     public AudioClip reloadSound;
+    [SerializeField] private AudioClip burnSound;
 
     [Range(0.0f, 1.0f)]
     public float ShotVolume;
@@ -36,7 +37,7 @@ public class PlayerShoot : MonoBehaviour
     public Animator gunReload;
     [SerializeField] private Animator fireballAnimator;
 
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -59,15 +60,15 @@ public class PlayerShoot : MonoBehaviour
             pistolMag = value;
         }
     }
-    
+
     void Update()
     {
-        
-        if(pistolBullets < 0)
+
+        if (pistolBullets < 0)
         {
             pistolBullets = 0;
         }
-        if(pistolBullets > 0)
+        if (pistolBullets > 0)
         {
             empty = false;
         }
@@ -76,41 +77,42 @@ public class PlayerShoot : MonoBehaviour
         {
 
 
-            
-                print("Shoot!");
-                if (pistolMag <= 0 && stopShooting == false)
+
+            print("Shoot!");
+            if (pistolMag <= 0 && stopShooting == false)
+            {
+
+                if (pistolBullets <= 0 && pistolMag <= 0)
                 {
-
-                    if (pistolBullets <= 0 && pistolMag <= 0)
-                    {
-                        soundPlayer.PlayOneShot(clickSound, ShotVolume);
-                        empty = true;
-                    }
-                    else
-                    {
-                        stopShooting = true;
-                        soundPlayer.PlayOneShot(clickSound, ShotVolume);
-                        waiting = true;
-
-                        StartCoroutine(quickPause());
-                    }
-                }
-                
-
-                if (!waiting)
-                {
-                    soundPlayer.PlayOneShot(shootSound, ShotVolume);
-                }
-
-                if (!stopShooting)
-                {
-                    StartCoroutine(shootBullet());
-                    pistolMag--;
+                    soundPlayer.PlayOneShot(clickSound, ShotVolume);
+                    empty = true;
                 }
                 else
                 {
+                    stopShooting = true;
                     soundPlayer.PlayOneShot(clickSound, ShotVolume);
+                    waiting = true;
+
+                    StartCoroutine(quickPause());
                 }
+            }
+
+
+            if (!waiting)
+            {
+                soundPlayer.PlayOneShot(shootSound, ShotVolume);
+            }
+
+            if (!stopShooting)
+            {
+                waiting = true;
+                StartCoroutine(shootBullet());
+                pistolMag--;
+            }
+            else
+            {
+                //soundPlayer.PlayOneShot(clickSound, ShotVolume);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.R) && PlayerInventory.Pistol && pistolBullets > 0)
@@ -123,11 +125,11 @@ public class PlayerShoot : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse2) && PlayerInventory.Pistol && PlayerStats.energy > 1 && stopShooting == false)
         {
             print("shoot Fireball!");
-                if (fire)
-                {
-                    StartCoroutine(shootFireball());
-                }
-            
+            if (fire)
+            {
+                StartCoroutine(shootFireball());
+            }
+
         }
         if (Input.GetKeyDown(KeyCode.Mouse2) && PlayerStats.energy > 1 && stopShooting == false)
         {
@@ -156,11 +158,11 @@ public class PlayerShoot : MonoBehaviour
         Instantiate(playerBullet, spawnPoint.transform.position, spawnPoint.transform.rotation);
     }
 
-     IEnumerator quickPause()
+    IEnumerator quickPause()
     {
         Debug.Log("Let's wait a bit");
         //gunReload = GameObject.FindWithTag("Pistol").GetComponent<Animator>();
-        
+
         soundPlayer.PlayOneShot(reloadSound, ShotVolume);
         gunReload.SetTrigger("Reloading");
 
@@ -170,7 +172,7 @@ public class PlayerShoot : MonoBehaviour
         //yield return new WaitForSeconds(2.6f);
         if (pistolBullets > 7)
         {
-            bulletsNeeded = (7-pistolMag);
+            bulletsNeeded = (7 - pistolMag);
             pistolBullets = pistolBullets - bulletsNeeded;
             pistolMag += bulletsNeeded;
         }
@@ -178,8 +180,8 @@ public class PlayerShoot : MonoBehaviour
         {
             //bulletsNeeded = (pistolMag-7);
             //pistolBullets = pistolBullets + bulletsNeeded;
-            
-            if(pistolMag + pistolBullets <= 7)
+
+            if (pistolMag + pistolBullets <= 7)
             {
                 pistolMag = pistolMag + pistolBullets;
                 print("mag: " + pistolMag + "pistolBullets: " + pistolBullets);
@@ -193,20 +195,22 @@ public class PlayerShoot : MonoBehaviour
             }
         }
 
-        
+
 
         gunReload.SetTrigger("BackToIdle");
 
         Debug.Log("Ok...start shooting again");
         stopShooting = false;
-        
+
         waiting = false;
     }
 
     IEnumerator shootFireball()
     {
         fire = false;
+        
         gunReload.SetTrigger("MeleeHit");
+        soundPlayer.PlayOneShot(burnSound, ShotVolume);
         yield return new WaitForSeconds(0.85f);
         Instantiate(fireBall, fbSpawnPoint.transform.position, fbSpawnPoint.transform.rotation);
         PlayerStats.energy--;
@@ -217,6 +221,7 @@ public class PlayerShoot : MonoBehaviour
     {
         fire = false;
         fireballAnimator.SetTrigger("Fireball");
+        soundPlayer.PlayOneShot(burnSound, ShotVolume);
         yield return new WaitForSeconds(0.85f);
         Instantiate(fireBall, fbSpawnPoint2.transform.position, fbSpawnPoint2.transform.rotation);
         PlayerStats.energy--;
@@ -234,6 +239,6 @@ public class PlayerShoot : MonoBehaviour
         gunReload.SetTrigger("BackToIdle");
         yield return new WaitForSeconds(0.25f);
         stopShooting = false;
-
+        waiting = false;
     }
 }

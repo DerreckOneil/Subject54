@@ -31,12 +31,19 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        wave = PlayerInteraction.waveBeforeILeft;
         wave++;
         spawnPoint = GameObject.FindGameObjectsWithTag("sp");
         //firstEnemy = GameObject.FindWithTag("Target");
         //firstEnemy.SetActive(false);
 
         numE = 1;
+        if (PlayerInteraction.waveBeforeILeft > 0)
+        {
+            print("Setting the wave to when I left! " + PlayerInteraction.waveBeforeILeft);
+            wave = PlayerInteraction.waveBeforeILeft;
+            print(wave);
+        }
     }
 
     // Update is called once per frame
@@ -44,7 +51,12 @@ public class EnemySpawner : MonoBehaviour
     {
         waveText.text = "Wave: " + wave;
         numEnemies = GameObject.FindGameObjectsWithTag("Target");
-
+       
+        if(wave < 0 )
+        {
+            print("Wave cannot be negative");
+            wave = 0;
+        }
         print("Enemy/enemies: " + numEnemies.Length);
 
         if (PlayerInventory.Pistol && firstEnemy != null)

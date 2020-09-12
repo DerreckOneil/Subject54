@@ -189,8 +189,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 12336228}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 182.3, y: -21.970001, z: 210.42963}
+  m_LocalRotation: {x: -0.34778374, y: 0.5785024, z: 0.29810044, w: 0.6749205}
+  m_LocalPosition: {x: 212.3474, y: -39.775314, z: 130.93484}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2301,6 +2301,7 @@ MonoBehaviour:
   shootSound: {fileID: 8300000, guid: 4a12cdd58ff52e24ab6bcd5dbf19edfa, type: 3}
   clickSound: {fileID: 8300000, guid: 1ea1fb584b326784a91e9f17193f438e, type: 3}
   reloadSound: {fileID: 8300000, guid: 84158149bffdad54e8da1229c4ac9820, type: 3}
+  burnSound: {fileID: 8300000, guid: 0098c90420007da458d531c15c465bf6, type: 3}
   ShotVolume: 1
   gunReload: {fileID: 586837182}
   fireballAnimator: {fileID: 558396926}
@@ -3119,6 +3120,10 @@ PrefabInstance:
       propertyPath: m_Range
       value: 17
       objectReference: {fileID: 0}
+    - target: {fileID: 554635293, guid: 836cd9d9ffdcba64db9dcab92e5a3d71, type: 3}
+      propertyPath: m_Volume
+      value: 0.47
+      objectReference: {fileID: 0}
     - target: {fileID: 685526093, guid: 836cd9d9ffdcba64db9dcab92e5a3d71, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0.4755981
@@ -3233,6 +3238,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 13400000, guid: 7a5f0bf6326f602418883235ff910727,
         type: 2}
+    - target: {fileID: 5266652437415952975, guid: 836cd9d9ffdcba64db9dcab92e5a3d71,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 5266652437420383151, guid: 836cd9d9ffdcba64db9dcab92e5a3d71,
         type: 3}
       propertyPath: m_Name
@@ -13442,7 +13452,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1617829674
 RectTransform:
   m_ObjectHideFlags: 0

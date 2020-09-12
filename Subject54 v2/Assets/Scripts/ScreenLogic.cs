@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class ScreenLogic : MonoBehaviour
 {
     // Start is called before the first frame update
     //PlayerShoot PSrefs;
+    [SerializeField] private Button resetButton;
     void Start()
     {
         if (SceneManager.GetActiveScene().name == "LoseScreen")
@@ -16,7 +18,8 @@ public class ScreenLogic : MonoBehaviour
             print("pistol: " + PlayerInventory.Pistol);
             //PSrefs.TotalBullets = 0;
             PlayerShoot.pistolMag = 0;
-            Cursor.visible = true;
+            ///Cursor.visible = true;
+            resetButton.gameObject.SetActive(false);
         }
     }
 
@@ -52,6 +55,7 @@ public class ScreenLogic : MonoBehaviour
     {
         yield return new WaitForSeconds(4);
         print("Now I can press any button!");
+        resetButton.gameObject.SetActive(true);
         if (Input.anyKeyDown)
         {
             

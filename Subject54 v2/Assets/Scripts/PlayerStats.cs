@@ -50,7 +50,7 @@ public class PlayerStats : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
-        if(GameEnvironment.currentTime % 3 == 0 && Time.fixedTime != 0 && PlayerStats.energy <= 4 && StopTimeMech.state == GameStates.Normal)
+        if(GameEnvironment.currentTime % 5 == 0 && Time.fixedTime != 0 && PlayerStats.energy <= 4 && StopTimeMech.state == GameStates.Normal)
         {
             
             if (changedVal == false)
@@ -81,9 +81,12 @@ public class PlayerStats : MonoBehaviour
     void endgame()
     {
         PlayerInventory.Pistol = false;
+        print("Setting the wave to zero");
         EnemySpawner.wave = 0;
+        PlayerInteraction.waveBeforeILeft = 0;
         score = 0;
         energy = 0;
+        KIAs = 0;
         SceneManager.UnloadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
