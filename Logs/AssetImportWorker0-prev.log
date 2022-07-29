@@ -177,3 +177,28 @@ Received Import Request.
   path: Assets/Fireball.anim
   artifactKey: Guid(4b8270ff44f2aea42acb71fdf7d16288) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Start importing Assets/Fireball.anim using Guid(4b8270ff44f2aea42acb71fdf7d16288) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8c83a5b0b2f2c0bdeb7cc4e37a84eacd') in 0.060744 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 409.860754 seconds.
+  path: Assets/Videos
+  artifactKey: Guid(21e9b86f29bc9fe45b25ab3eadaf2c0c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Videos using Guid(21e9b86f29bc9fe45b25ab3eadaf2c0c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cfbe8eba7af82bb1417d25e4633bd0a1') in 0.011013 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 825.838887 seconds.
+  path: Assets
+  artifactKey: Guid(00000000000000001000000000000000) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets using Guid(00000000000000001000000000000000) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '79842766b460edbeab6a34051e857a80') in 0.006724 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 6.224016 seconds.
+  path: Assets/Animations
+  artifactKey: Guid(9fbd3b3a7e025dc48a0909e4e8f90305) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations using Guid(9fbd3b3a7e025dc48a0909e4e8f90305) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4b860336af85cbce60f4be25dc3165ab') in 0.007288 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 8.086660 seconds.
+  path: Assets/NoGunIdle.anim
+  artifactKey: Guid(a3e1dc15241396b47928e66950da5b98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/NoGunIdle.anim using Guid(a3e1dc15241396b47928e66950da5b98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dab13e0b9c974df3cb9891fbeb034de6') in 0.007616 seconds 
+AssetImportWorkerClient::OnTransportError - code=10054 error=An existing connection was forcibly closed by the remote host.
