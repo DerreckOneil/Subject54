@@ -18,7 +18,7 @@ public class BulletDelete : MonoBehaviour
     {
         distanceAway = Vector3.Distance(transform.position, Player.transform.position);
         //print("This bullet is: " + distanceAway + " Units away from player!");
-        if(distanceAway > 100)
+        if (distanceAway > 100)
         {
             Destroy(gameObject);
         }
