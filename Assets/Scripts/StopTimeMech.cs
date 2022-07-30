@@ -180,7 +180,7 @@ public class StopTimeMech : MonoBehaviour
     void normalTime()
     {
         Movement.timeFrame = 1;
-        Meter.value = PlayerStats.KIAs;  // CHANGE ME BACK!!!!!/////////////////////        
+        Meter.value = PlayerStats.KIAs;  //CHANGE ME BACK!!!!!/////////////////////        
         if (ps != null)
         {
             for (int i = 0; i < ps.Length; i++)
