@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StopTimeService : ScriptableObject, IStopTimeService
 {
+
     public void BeginStopTimeAnim()
     {
         throw new System.NotImplementedException();
@@ -20,9 +21,9 @@ public class StopTimeService : ScriptableObject, IStopTimeService
     }
 
     
-
-    public void StopTimeListener()
+    public void OnStateChangeListener()
     {
-        throw new System.NotImplementedException();
+        
     }
+
 }

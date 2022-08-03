@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92af52367f9cc794fa973f31be6792fc, type: 3}
   m_Name: GameRuntime
   m_EditorClassIdentifier: 
-  serviceLocator: {fileID: 0}
+  serviceLocator: {fileID: 11400000, guid: 477c2289b5c935944963b0214bab39d0, type: 2}

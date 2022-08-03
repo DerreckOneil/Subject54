@@ -12,7 +12,7 @@ public interface IStopTimeService
 
     public void EndStopTimeAnim();
 
-    public void StopTimeListener();
+    public void OnStateChangeListener();
 
     
 }

@@ -1,8 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class StopTimeDemo : MonoBehaviour
 {
     [SerializeField]
@@ -25,14 +25,5 @@ public class StopTimeDemo : MonoBehaviour
     [SerializeField] AudioSource source;
     float sourceOrigPitch;
 
-
-
-    private void Start()
-    {
-        
-    }
-    private void Update()
-    {
-        
-    }
+    //public Action<>
 }
