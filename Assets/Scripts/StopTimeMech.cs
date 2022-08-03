@@ -20,7 +20,7 @@ public class StopTimeMech : MonoBehaviour
     [SerializeField]
     private float Imgmax;
 
-    public static GameStates state;
+    public static TimeState state;
 
     [SerializeField] AudioSource source;
     float sourceOrigPitch;
@@ -37,7 +37,7 @@ public class StopTimeMech : MonoBehaviour
     void Start()
     {
 
-        state = GameStates.Normal;
+        state = TimeState.Normal;
     }
     
 
@@ -47,14 +47,14 @@ public class StopTimeMech : MonoBehaviour
 
         switch(state)
         {
-            case GameStates.TimeStop:
+            case TimeState.TimeStopped:
                 stopTime();
                 decrMeter();
                 break;
-            case GameStates.Normal:
+            case TimeState.Normal:
                 normalTime();
                 break;
-            case GameStates.TimeSlowed:
+            case TimeState.TimeSlowed:
                 slowTime();
                 break;
 
@@ -77,7 +77,7 @@ public class StopTimeMech : MonoBehaviour
             StartCoroutine(stopTimeTransition());
             
             
-            state = GameStates.TimeStop;
+            state = TimeState.TimeStopped;
          
        }
        
@@ -144,14 +144,14 @@ public class StopTimeMech : MonoBehaviour
     }
     void decrMeter()
     {
-        if ((int)Time.fixedTime % 1 == 0 && state == GameStates.TimeStop && Meter.value > 0)
+        if ((int)Time.fixedTime % 1 == 0 && state == TimeState.TimeStopped && Meter.value > 0)
         {
             print("decrease my meter!!!");
             Meter.value -= .1f * Time.deltaTime;
         }
         if(Meter.value <= 0)
         {
-            state = GameStates.Normal;
+            state = TimeState.Normal;
             StartCoroutine(endStopTimeTransition());
             //image.SetActive(false);
             PlayerStats.KIAs = 0;
@@ -172,7 +172,7 @@ public class StopTimeMech : MonoBehaviour
         if(PlayerStats.energy <=0)
         {
             print("change to normal time!");
-            state = GameStates.Normal;
+            state = TimeState.Normal;
             image.SetActive(false);
             normalTime();
         }

@@ -35,7 +35,7 @@ public class SWATEnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (StopTimeMech.state == GameStates.Normal)
+        if (StopTimeMech.state == TimeState.Normal)
         {
             print("Look at player");
             transform.LookAt(target.transform.position);

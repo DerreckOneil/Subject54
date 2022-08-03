@@ -50,7 +50,7 @@ public class PlayerStats : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
-        if(GameEnvironment.currentTime % 5 == 0 && Time.fixedTime != 0 && PlayerStats.energy <= 4 && StopTimeMech.state == GameStates.Normal)
+        if(GameEnvironment.currentTime % 5 == 0 && Time.fixedTime != 0 && PlayerStats.energy <= 4 && StopTimeMech.state == TimeState.Normal)
         {
             
             if (changedVal == false)
@@ -66,7 +66,7 @@ public class PlayerStats : MonoBehaviour
             changedVal = false;
         }
 
-        if (GameEnvironment.currentTime % 3 == 0 && PlayerStats.energy >= 1 && StopTimeMech.state == GameStates.TimeStop)
+        if (GameEnvironment.currentTime % 3 == 0 && PlayerStats.energy >= 1 && StopTimeMech.state == TimeState.TimeStopped)
         {
             print("Decrease player energy!");
             //PlayerStats.energy--;

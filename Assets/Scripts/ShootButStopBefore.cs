@@ -11,7 +11,7 @@ public class ShootButStopBefore : MonoBehaviour
     float[] distanceFromTarget;
 
     public float moveSpeed = 10.0f;
-    GameStates state;
+    TimeState state;
     float distance;
 
     bool triggered;
@@ -38,14 +38,14 @@ public class ShootButStopBefore : MonoBehaviour
             print("stop moving");
             moveSpeed = 0;
         }
-        if (StopTimeMech.state == GameStates.TimeStop)
+        if (StopTimeMech.state == TimeState.TimeStopped)
         {
             print("Thrown In stopped Time!");
             
            
             
         }
-         if(StopTimeMech.state == GameStates.Normal)
+         if(StopTimeMech.state == TimeState.Normal)
         {
             triggered = false;
             print("now move");

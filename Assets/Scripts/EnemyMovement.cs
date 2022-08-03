@@ -48,7 +48,7 @@ public class EnemyMovement : MonoBehaviour
             }
 
         }
-        if (StopTimeMech.state == GameStates.Normal)
+        if (StopTimeMech.state == TimeState.Normal)
         {
             EnemyAnimEngine.enabled = true;
             enemyNav.speed = 1.5f;
@@ -60,7 +60,7 @@ public class EnemyMovement : MonoBehaviour
             EnemyAnimEngine.enabled = false;
         }
 
-        if (StopTimeMech.state == GameStates.Normal)
+        if (StopTimeMech.state == TimeState.Normal)
         {
             print("Look at player");
             transform.LookAt(target.transform.position);

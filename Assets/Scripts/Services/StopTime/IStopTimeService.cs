@@ -1,18 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public interface IStopTimeService
 {
-    //public void ServiceInit(); Not a good idea I believe...need to use monobehav functions to initialize anything...next!
+    TimeState TimeState { get; }
 
-    public GameStates GetCurrentState();
+    //TODO: This is for a "View" system
+    //For example, a VignetteTimeEffect
+    //void BeginStopTimeAnim();
+    //void EndStopTimeAnim();
+}
 
-    public void BeginStopTimeAnim();
+public interface ITimeStateListener {
+    void OnTimeStateChanged(IStopTimeService timeService);
+}
 
-    public void EndStopTimeAnim();
+public class MonoBehaviourService : MonoBehaviour {
+    [SerializeField] private GameRuntime gameRuntime;
 
-    public void OnStateChangeListener();
+    protected virtual void OnEnable() {
+        gameRuntime.ServiceLocator.AddService(this);
+    }
 
-    
+    protected virtual void OnDisable() {
+        gameRuntime.ServiceLocator.RemoveService(this);
+    }
+}
+
+public class VignetteTimeEffect : MonoBehaviourService, ITimeStateListener {
+    [SerializeField] private GameRuntime gameRuntime;
+
+    public void OnTimeStateChanged(IStopTimeService timeService) {
+        Debug.Log(nameof(TimeState) + " changed to " + timeService.TimeState);
+    }
 }

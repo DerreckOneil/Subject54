@@ -33,7 +33,7 @@ public class EnemyShoot : MonoBehaviour
             print("Every one second");
             if (enemy != null)
             {
-                if (StopTimeMech.state == GameStates.Normal && !enemy.burned)
+                if (StopTimeMech.state == TimeState.Normal && !enemy.burned)
                 {
                     soundPlayer.PlayOneShot(shootSound, ShotVolume);
                     spawnBullet();
@@ -42,7 +42,7 @@ public class EnemyShoot : MonoBehaviour
             }
             if (enemy2 != null)
             {
-                if (StopTimeMech.state == GameStates.Normal && !enemy2.burned)
+                if (StopTimeMech.state == TimeState.Normal && !enemy2.burned)
                 {
                     soundPlayer.PlayOneShot(shootSound, ShotVolume);
                     spawnBullet();

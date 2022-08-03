@@ -1,29 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class StopTimeService : ScriptableObject, IStopTimeService
 {
+    [SerializeField] private GameRuntime gameRuntime;
 
-    public void BeginStopTimeAnim()
-    {
-        throw new System.NotImplementedException();
+    private TimeState timeState;
+
+    public TimeState TimeState {
+        get { return timeState; }
+        set {
+            timeState = value;
+            gameRuntime.ServiceLocator.InvokeAllListeners<ITimeStateListener>(
+                (ITimeStateListener listener) => listener.OnTimeStateChanged(this));
+        }
     }
-
-    public void EndStopTimeAnim()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public GameStates GetCurrentState()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    
-    public void OnStateChangeListener()
-    {
-        
-    }
-
 }
