@@ -10,13 +10,15 @@ public class ServiceLocator : ScriptableObject, IServiceLocator
     //Place the junk logic here.
     [SerializeField] private List<Object> services = new List<Object>();
 
-    private IEnumerable<Object> GetValidServices() {
+    private IEnumerable<Object> GetValidServices()
+    {
         foreach (Object service in services)
             if (service != null)
                 yield return service;
     }
 
-    public bool AddService<T>(T service) where T : class {
+    public bool AddService<T>(T service) where T : class
+    {
         if (!(service is Object unityService))
             throw new ArgumentException("Only " + typeof(Object).FullName + " services are supported currently!", nameof(service));
 
@@ -28,7 +30,8 @@ public class ServiceLocator : ScriptableObject, IServiceLocator
         return true;
     }
 
-    public bool RemoveService<T>(T service) where T : class {
+    public bool RemoveService<T>(T service) where T : class
+    {
         if (!(service is Object unityService))
             throw new ArgumentException("Only " + typeof(Object).FullName + " services are supported currently!", nameof(service));
 
@@ -41,11 +44,12 @@ public class ServiceLocator : ScriptableObject, IServiceLocator
 
     public T GetService<T>() where T : class
     {
-        Object something =  services.Find(x => x != null && x is T);
+        Object something = services.Find(x => x != null && x is T);
         return something as T;
     }
 
-    public void InvokeAllListeners<L>(Action<L> callback) where L : class {
+    public void InvokeAllListeners<L>(Action<L> callback) where L : class
+    {
         foreach (Object service in GetValidServices())
             if (service is L listener)
                 callback(listener);

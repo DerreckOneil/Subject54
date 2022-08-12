@@ -3,8 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class StopTimeDemo : MonoBehaviour
+
+[CreateAssetMenu]
+public class StopTimeDemo : ScriptableObject, IStopTimeService
 {
+
+    /*
     [SerializeField]
     private GameRuntime gameRuntime;
 
@@ -26,4 +30,37 @@ public class StopTimeDemo : MonoBehaviour
     float sourceOrigPitch;
 
     //public Action<>
+    */
+    [SerializeField] private GameRuntime gameRuntime;
+
+
+    private static VignetteTimeEffect effectRef;
+
+   
+    public void ChangeState (TimeState state)
+    {
+        switch (state)
+        {
+            case TimeState.TimeStopped:
+                //stopTime();
+                //decrMeter();
+                //TriggerAnim();
+                //effectRef.BeginSTAnim();
+                gameRuntime.ServiceLocator.GetService<StopTimeService>().TimeState = TimeState.TimeStopped;
+                break;
+            case TimeState.Normal:
+                //normalTime();
+                gameRuntime.ServiceLocator.GetService<StopTimeService>().TimeState = TimeState.Normal;
+                break;
+            case TimeState.TimeSlowed:
+
+                //slowTime();
+
+                gameRuntime.ServiceLocator.GetService<StopTimeService>().TimeState = TimeState.Normal;
+
+                break;
+        }
+    }
+
 }
+
