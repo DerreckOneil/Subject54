@@ -36,16 +36,26 @@ public class StopTimeDemo : ScriptableObject, IStopTimeService
 
     private static VignetteTimeEffect effectRef;
 
-   
-    public void ChangeState (TimeState state)
+    
+    /*
+    public TimeState TimeState
     {
+        get;
+    }
+    */
+
+    public TimeState TimeState => TimeState;
+
+    public void ChangeState(TimeState state)
+    {
+        StopTimeService stopTimeService = gameRuntime.ServiceLocator.GetService<StopTimeService>();
         switch (state)
         {
             case TimeState.TimeStopped:
                 //stopTime();
                 //decrMeter();
                 //TriggerAnim();
-                //effectRef.BeginSTAnim();
+                effectRef.BeginSTAnim();
                 gameRuntime.ServiceLocator.GetService<StopTimeService>().TimeState = TimeState.TimeStopped;
                 break;
             case TimeState.Normal:
@@ -55,9 +65,7 @@ public class StopTimeDemo : ScriptableObject, IStopTimeService
             case TimeState.TimeSlowed:
 
                 //slowTime();
-
-                gameRuntime.ServiceLocator.GetService<StopTimeService>().TimeState = TimeState.Normal;
-
+                gameRuntime.ServiceLocator.GetService<StopTimeService>().TimeState = TimeState.TimeSlowed;
                 break;
         }
     }
