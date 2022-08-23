@@ -1,5 +1,6 @@
 ﻿
 public interface ITimeStateListener
 {
-    void OnTimeStateChanged(IStopTimeService timeService);
+    void OnTimeStateChanged(TimeState previous, TimeState current);
+
 }

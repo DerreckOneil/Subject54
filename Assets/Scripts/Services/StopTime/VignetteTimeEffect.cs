@@ -7,10 +7,13 @@ public class VignetteTimeEffect : MonoBehaviourService, ITimeStateListener
 
     [SerializeField] private GameObject image;
 
+    public delegate void AnimationListener();
 
-    public void OnTimeStateChanged(IStopTimeService timeService)
+    public void OnTimeStateChanged(TimeState previous, TimeState current)
     {
-        Debug.Log(nameof(TimeState) + " changed to " + timeService.TimeState);
+        Debug.Log(nameof(TimeState) + " changed to " + current);
+        if(current == TimeState.TimeStopped)
+            BeginSTAnim();
     }
     public void BeginSTAnim()
     {

@@ -8,41 +8,9 @@ using UnityEngine.UI;
 public class StopTimeDemo : ScriptableObject, IStopTimeService
 {
 
-    /*
-    [SerializeField]
-    private GameRuntime gameRuntime;
-
-
-    [SerializeField] private GameObject[] ps;
-    [SerializeField] private GameObject image;
-
-    [SerializeField] private Slider Meter;
-    [SerializeField] private Text MeterText;
-
-    float meterDecr = .1f;
-
-    [SerializeField] private float Imgmin;
-    [SerializeField] private float Imgmax;
-
-    //private GameStates state;
-
-    [SerializeField] AudioSource source;
-    float sourceOrigPitch;
-
-    //public Action<>
-    */
     [SerializeField] private GameRuntime gameRuntime;
 
-
     private static VignetteTimeEffect effectRef;
-
-    
-    /*
-    public TimeState TimeState
-    {
-        get;
-    }
-    */
 
     public TimeState TimeState => TimeState;
 
@@ -52,20 +20,17 @@ public class StopTimeDemo : ScriptableObject, IStopTimeService
         switch (state)
         {
             case TimeState.TimeStopped:
-                //stopTime();
-                //decrMeter();
-                //TriggerAnim();
-                effectRef.BeginSTAnim();
+                //effectRef.BeginSTAnim();
                 gameRuntime.ServiceLocator.GetService<StopTimeService>().TimeState = TimeState.TimeStopped;
+                Debug.Log("State change to TimeStopped");
                 break;
             case TimeState.Normal:
-                //normalTime();
                 gameRuntime.ServiceLocator.GetService<StopTimeService>().TimeState = TimeState.Normal;
+                Debug.Log("State change to TimeNormal");
                 break;
             case TimeState.TimeSlowed:
-
-                //slowTime();
                 gameRuntime.ServiceLocator.GetService<StopTimeService>().TimeState = TimeState.TimeSlowed;
+                Debug.Log("State change to TimeSlowed");
                 break;
         }
     }
