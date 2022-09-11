@@ -39,7 +39,7 @@ public class EnemyStats : MonoBehaviour
             print("I'm dead");
             
             
-            PlayerStats.KIAs += .1f;
+            PlayerStats.EnemyKillPoints += .1f;
             Destroy(gameObject);
         }
     }

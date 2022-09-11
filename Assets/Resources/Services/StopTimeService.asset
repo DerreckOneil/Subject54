@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ff03c6cfd773ee4484dcd65011359c1, type: 3}
-  m_Name: ServiceLocator
+  m_Script: {fileID: 11500000, guid: a16aac624fa5b3a458ce334b7519eb5e, type: 3}
+  m_Name: StopTimeService
   m_EditorClassIdentifier: 
-  services:
-  - {fileID: 11400000, guid: 45d223ed01d94424fbe84095feef75ba, type: 2}
-  - {fileID: 11400000, guid: 3643e22f18c9c0e41ab69ac54e91b97c, type: 2}
+  gameRuntime: {fileID: 0}

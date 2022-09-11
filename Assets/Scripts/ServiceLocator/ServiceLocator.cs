@@ -48,10 +48,22 @@ public class ServiceLocator : ScriptableObject, IServiceLocator
         return something as T;
     }
 
-    public void InvokeAllListeners<L>(Action<L> callback) where L : class
+    public void InvokeAllListeners<L>(Action<L> doSomething) where L : class
     {
         foreach (Object service in GetValidServices())
             if (service is L listener)
-                callback(listener);
+                doSomething(listener);
+ 
     }
+    public void DoSomething()
+    {
+        DoSomething2(() => Debug.Log("faaaak"));
+        DoSomething2(DoSomething);
+    }
+    public void DoSomething2(Action callback)
+    {
+        callback();
+    }
+    
+    
 }

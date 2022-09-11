@@ -5,33 +5,104 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [CreateAssetMenu]
-public class StopTimeDemo : ScriptableObject, IStopTimeService
+public class StopTimeDemo : MonoBehaviour, ITimeStateListener
 {
+    //TODO: Make the enemies set their ps to the UIGameData list.
+
 
     [SerializeField] private GameRuntime gameRuntime;
-
     private static VignetteTimeEffect effectRef;
 
-    public TimeState TimeState => TimeState;
+    //How about placing all these in a ScriptableObject? 
 
-    public void ChangeState(TimeState state)
+    private Slider Meter;
+
+    private Text MeterText;
+
+    private GameObject[] ps;
+
+    private GameObject image;
+
+    private void Awake()
     {
-        StopTimeService stopTimeService = gameRuntime.ServiceLocator.GetService<StopTimeService>();
-        switch (state)
+        ps = GameObject.FindGameObjectsWithTag("ps");
+    }
+
+    public void OnTimeStateChanged(TimeState previous, TimeState current)
+    {
+        switch (current)
         {
-            case TimeState.TimeStopped:
-                //effectRef.BeginSTAnim();
-                gameRuntime.ServiceLocator.GetService<StopTimeService>().TimeState = TimeState.TimeStopped;
-                Debug.Log("State change to TimeStopped");
-                break;
             case TimeState.Normal:
-                gameRuntime.ServiceLocator.GetService<StopTimeService>().TimeState = TimeState.Normal;
-                Debug.Log("State change to TimeNormal");
+                NormalTime();
                 break;
-            case TimeState.TimeSlowed:
-                gameRuntime.ServiceLocator.GetService<StopTimeService>().TimeState = TimeState.TimeSlowed;
-                Debug.Log("State change to TimeSlowed");
+            case TimeState.TimeStopped:
+                StopTime();
                 break;
+            default:
+                Debug.LogError("Unexpected state " + current);
+                break;
+        }
+
+    }
+
+    private void Update()
+    {
+        //What do I wanna check every frame
+
+
+
+        if (Meter.value == Meter.maxValue)
+        {
+            //Meter.colors.normalColor = Color.red;
+            MeterText.text = "Max! (Right click to Stop Time!)";
+        }
+        else
+        {
+            MeterText.text = "";
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse1) && Meter.value == Meter.maxValue)
+        {
+
+            Debug.Log("Stop Time");
+            effectRef.BeginSTAnim();
+            //StartCoroutine(stopTimeTransition());
+
+
+        }
+
+    }
+    void NormalTime()
+    {
+        Movement.timeFrame = 1;
+        Meter.value = PlayerStats.EnemyKillPoints;
+        if (ps != null)
+        {
+            for (int i = 0; i < ps.Length; i++)
+            {
+                ps[i].GetComponent<ParticleSystem>().Play(true);
+            }
+        }
+    }
+
+    void StopTime()
+    {
+        IStopTimeService timeSystem = gameRuntime.ServiceLocator.GetService<IStopTimeService>();
+
+        Movement.timeFrame = 0; //Stops everything I assign movement (script) to within Unity by deception
+
+        //This HAS to be added via Enemies...please FFS.
+        ps = GameObject.FindGameObjectsWithTag("ps");
+        for (int i = 0; i < ps.Length; i++)
+        {
+            ps[i].GetComponent<ParticleSystem>().Pause(true);
+        }
+        if (PlayerStats.energy <= 0)
+        {
+            Debug.Log("change to normal time!");
+            OnTimeStateChanged(TimeState.TimeStopped, TimeState.Normal);
+            image.SetActive(false);
+            NormalTime();
         }
     }
 
