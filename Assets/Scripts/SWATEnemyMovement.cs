@@ -11,7 +11,7 @@ public class SWATEnemyMovement : MonoBehaviour
     [SerializeField]
     private Animator EnemyAnimEngine;
 
-    [SerializeField] private Enemy3Stats refs;
+    //[SerializeField] private Enemy3Stats refs;
     bool slashing;
 
     public bool Slashing
@@ -35,6 +35,7 @@ public class SWATEnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (StopTimeMech.state == TimeState.Normal)
         {
             print("Look at player");
@@ -52,6 +53,7 @@ public class SWATEnemyMovement : MonoBehaviour
         {
             StartCoroutine(Death());
         }
+        */
 
     }
     void FollowPlayer()

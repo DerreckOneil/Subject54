@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
-    [SerializeField]
-    private PlayerShoot refs;
+    //[SerializeField]
+    //private PlayerShoot refs;
     [SerializeField] private CameraShake CameraRef;
     [SerializeField] private AudioSource soundPlayer;
     [SerializeField] private AudioClip damageSound;
@@ -30,7 +30,7 @@ public class PlayerCollision : MonoBehaviour
         //print("I collided with: " + coll.gameObject.name); //(works)
         if (coll.gameObject.tag == "Mag")
         {
-            refs.pistolBullets += 10;
+            //refs.pistolBullets += 10;
             Destroy(coll.gameObject);
         }
         if (coll.gameObject.tag == "EnemyMW")
@@ -39,8 +39,8 @@ public class PlayerCollision : MonoBehaviour
             
                 print("Hit by the enemy's melee weapon");
 
-                PlayerStats.health -= 3;
-                PlayerInteraction.playerHit = true;
+                //PlayerStats.health -= 3;
+                //PlayerInteraction.playerHit = true;
             
         }
     }

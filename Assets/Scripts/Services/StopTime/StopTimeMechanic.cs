@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [CreateAssetMenu]
-public class StopTimeDemo : MonoBehaviour, ITimeStateListener
+public class StopTimeMechanic : MonoBehaviour, ITimeStateListener
 {
     //TODO: Make the enemies set their ps to the UIGameData list.
 
@@ -75,7 +75,7 @@ public class StopTimeDemo : MonoBehaviour, ITimeStateListener
     void NormalTime()
     {
         Movement.timeFrame = 1;
-        Meter.value = PlayerStats.EnemyKillPoints;
+        //Meter.value = PlayerStats.EnemyKillPoints;
         if (ps != null)
         {
             for (int i = 0; i < ps.Length; i++)
@@ -97,6 +97,7 @@ public class StopTimeDemo : MonoBehaviour, ITimeStateListener
         {
             ps[i].GetComponent<ParticleSystem>().Pause(true);
         }
+        /*Please revisit...
         if (PlayerStats.energy <= 0)
         {
             Debug.Log("change to normal time!");
@@ -104,6 +105,7 @@ public class StopTimeDemo : MonoBehaviour, ITimeStateListener
             image.SetActive(false);
             NormalTime();
         }
+        */
     }
 
 }

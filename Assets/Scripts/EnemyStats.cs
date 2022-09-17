@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyStats : MonoBehaviour
 {
+    //Split this into two different scripts. Namely, make this script for only the stats and another for interaction...
+
     [SerializeField]
     private int health = 1;
     [SerializeField]
@@ -12,21 +14,22 @@ public class EnemyStats : MonoBehaviour
     private GameObject fireGO;
     [SerializeField]
     private GameObject fireGO2;
+    private bool burned;
+    private bool dead;
+    /*
     [SerializeField]
     private GameObject gun;
     [SerializeField]
     private GameObject ammoMag;
+    */
     [SerializeField]
     private int explosiveForce;
     [SerializeField]
     private int explosiveRadius;
 
-    public bool burned;
-    public bool dead;
     // Start is called before the first frame update
     void Start()
     {
-        //fireGO = GameObject.FindWithTag("Fire");
         fireGO.SetActive(false);
         fireGO2.SetActive(false);
     }
@@ -39,7 +42,7 @@ public class EnemyStats : MonoBehaviour
             print("I'm dead");
             
             
-            PlayerStats.EnemyKillPoints += .1f;
+            //PlayerStats.EnemyKillPoints += .1f;
             Destroy(gameObject);
         }
     }
@@ -51,9 +54,9 @@ public class EnemyStats : MonoBehaviour
         {
             print("I was hit by player!");
             //health--;
-            gun.SetActive(false);
+            //gun.SetActive(false);
             StartCoroutine(beforeDeath());
-            PlayerStats.score += 100;
+            //PlayerStats.score += 100;
         }
         if(coll.gameObject.tag == "Fire")
         {
@@ -61,7 +64,7 @@ public class EnemyStats : MonoBehaviour
             burned = true;
             fireGO.SetActive(true);
             fireGO2.SetActive(true);
-            gun.SetActive(false);
+            //gun.SetActive(false);
             StartCoroutine(beforeDeath());
         }
     }
@@ -74,7 +77,7 @@ public class EnemyStats : MonoBehaviour
             burned = true;
             fireGO.SetActive(true);
             fireGO2.SetActive(true);
-            gun.SetActive(false);
+            //gun.SetActive(false);
             StartCoroutine(beforeDeath());
         }
         if (coll.gameObject.tag == "Grab")
@@ -82,7 +85,7 @@ public class EnemyStats : MonoBehaviour
             print("Hit by throwable");
             StartCoroutine(beforeDeath());
             //health = 0;
-            PlayerStats.score += 150;
+            //PlayerStats.score += 150;
         }
         if(coll.gameObject.tag == "PlayerHB")
         {
@@ -98,10 +101,10 @@ public class EnemyStats : MonoBehaviour
         //dead = true;
         health = 0;
         
-        PlayerStats.score += 150;
+        //PlayerStats.score += 150;
     }
     void ammoSpawn()
     {
-        Instantiate(ammoMag, gameObject.transform.position, gameObject.transform.rotation);
+        //Instantiate(ammoMag, gameObject.transform.position, gameObject.transform.rotation);
     }
 }

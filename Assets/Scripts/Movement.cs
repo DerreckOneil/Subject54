@@ -23,8 +23,9 @@ public class Movement : MonoBehaviour
         if (coll.gameObject.tag == "Player")
         {
             print("I hit the Player!");
-            PlayerStats.health--;
-            PlayerInteraction.playerHit = true;
+            //call some public function that is accessed via editor for this maybe...
+            //PlayerStats.health--;
+            //PlayerInteraction.playerHit = true;
         }
         if(coll.gameObject.tag == "Target")
         {
