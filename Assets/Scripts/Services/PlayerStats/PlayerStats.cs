@@ -6,11 +6,11 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
 
-    [SerializeField] private ScriptableObject playerStatsContainer;
+    [SerializeField] private PlayerStatsContainer playerStatsContainer;
     //I wanna have the health accessible across scenes. This means I want it in something like a SO
     //such that when the game goes from scene to scene, everything doesn't disapate
     [SerializeField] private int health;
-    [SerializeField] private string name;
+    [SerializeField] private string playerName;
     [SerializeField] private int score;
     [SerializeField] private int killPoints;
 
@@ -29,10 +29,10 @@ public class PlayerStats : MonoBehaviour
 
     private void SetPlayerStats()
     {
-        name = gameRuntime.ServiceLocator.GetService<PlayerStatsContainer>().name;
-        health = gameRuntime.ServiceLocator.GetService<PlayerStatsContainer>().Health;
-        score = gameRuntime.ServiceLocator.GetService<PlayerStatsContainer>().Score;
-        killPoints = gameRuntime.ServiceLocator.GetService<PlayerStatsContainer>().KillPoints;
+        playerName = playerStatsContainer.PlayerName;
+        health = playerStatsContainer.Health;
+        score = playerStatsContainer.Score;
+        killPoints = playerStatsContainer.KillPoints;
     }
 
     // Update is called once per frame

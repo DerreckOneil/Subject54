@@ -6,7 +6,7 @@ public interface IPlayerStats
     //remember an interface is a blueprint...what should all players have
     //private string name;
 
-    public int Name { get; }
+    public string PlayerName { get; }
 
     public int Score { get; }
 

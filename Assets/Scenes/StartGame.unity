@@ -2952,8 +2952,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStatsContainer: {fileID: 11400000, guid: 36b7056cf1b504b45a25901c50deeec4,
     type: 2}
-  health: 10
-  name: Player1
+  health: 0
+  playerName: 
   score: 0
   killPoints: 0
   gameRuntime: {fileID: 11400000, guid: 6fe2b623678053c42a0e4f3591d226e1, type: 2}

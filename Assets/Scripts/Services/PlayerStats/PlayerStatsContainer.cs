@@ -6,13 +6,13 @@ using UnityEngine;
 public class PlayerStatsContainer : ScriptableObject, IPlayerStats
 {
     [SerializeField] private int health;
-    [SerializeField] private int name;
+    [SerializeField] private string playerName;
     [SerializeField] private int score;
     [SerializeField] private int killPoints;
 
     public int Health { get { return health; } set { health = value; } }
 
-    public int Name => name;
+    public string PlayerName => playerName;
 
     public int Score { get { return score; } set { score = value; } }
 
