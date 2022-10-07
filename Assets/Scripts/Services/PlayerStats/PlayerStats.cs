@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,13 +14,25 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private int score;
     [SerializeField] private int killPoints;
 
+    [SerializeField] private GameRuntime gameRuntime;
+
     // Start is called before the first frame update
     void Awake()
     {
-        name = gameObject.name;
+        SetPlayerStats();
+        
+                    
         //health will stay as is between scenes but must be set upon start of game...
         //score will stay as is between scenes
 
+    }
+
+    private void SetPlayerStats()
+    {
+        name = gameRuntime.ServiceLocator.GetService<PlayerStatsContainer>().name;
+        health = gameRuntime.ServiceLocator.GetService<PlayerStatsContainer>().Health;
+        score = gameRuntime.ServiceLocator.GetService<PlayerStatsContainer>().Score;
+        killPoints = gameRuntime.ServiceLocator.GetService<PlayerStatsContainer>().KillPoints;
     }
 
     // Update is called once per frame

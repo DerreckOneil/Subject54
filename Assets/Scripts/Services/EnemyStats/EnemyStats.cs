@@ -16,12 +16,8 @@ public class EnemyStats : MonoBehaviour
     private GameObject fireGO2;
     private bool burned;
     private bool dead;
-    /*
-    [SerializeField]
-    private GameObject gun;
-    [SerializeField]
-    private GameObject ammoMag;
-    */
+    
+    
     [SerializeField]
     private int explosiveForce;
     [SerializeField]

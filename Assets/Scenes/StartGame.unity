@@ -192,8 +192,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 12336228}
-  m_LocalRotation: {x: -0.34778374, y: 0.5785024, z: 0.29810044, w: 0.6749205}
-  m_LocalPosition: {x: 212.3474, y: -39.775314, z: 130.93484}
+  m_LocalRotation: {x: 0.007817522, y: -0.99124324, z: -0.1137928, w: -0.06653561}
+  m_LocalPosition: {x: 183.63043, y: -23.048279, z: 216.72902}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2937,6 +2937,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: decf6ea713944da49b12f522aafea33f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameRuntime: {fileID: 11400000, guid: 6fe2b623678053c42a0e4f3591d226e1, type: 2}
+--- !u!114 &588623733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 588623731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f1f5463916ef1e4087e6464ab3a9d62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerStatsContainer: {fileID: 11400000, guid: 36b7056cf1b504b45a25901c50deeec4,
+    type: 2}
+  health: 10
+  name: Player1
+  score: 0
+  killPoints: 0
   gameRuntime: {fileID: 11400000, guid: 6fe2b623678053c42a0e4f3591d226e1, type: 2}
 --- !u!114 &691199550 stripped
 MonoBehaviour:

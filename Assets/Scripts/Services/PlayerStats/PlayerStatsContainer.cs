@@ -5,10 +5,10 @@ using UnityEngine;
 [CreateAssetMenu]
 public class PlayerStatsContainer : ScriptableObject, IPlayerStats
 {
-    private int health;
-    private int name;
-    private int score;
-    private int killPoints;
+    [SerializeField] private int health;
+    [SerializeField] private int name;
+    [SerializeField] private int score;
+    [SerializeField] private int killPoints;
 
     public int Health { get { return health; } set { health = value; } }
 
@@ -18,8 +18,7 @@ public class PlayerStatsContainer : ScriptableObject, IPlayerStats
 
     public int KillPoints { get { return killPoints; } set { killPoints = value; } }
 
-    [SerializeField] private ScriptableObject PlayerStatsSO;
-
+    
     //Big ohhhhhhh moment here for this syntax and utilizing interfaces with getters.
 
     //This will go onto each player
