@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f986deb0074d71e4fa4e903213989733, type: 3}
   m_Name: Player Stats Container
   m_EditorClassIdentifier: 
-  PlayerStatsSO: {fileID: 0}
+  health: 5
+  score: 0
+  killPoints: 0

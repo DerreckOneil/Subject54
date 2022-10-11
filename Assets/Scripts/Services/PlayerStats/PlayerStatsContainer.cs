@@ -6,9 +6,9 @@ using UnityEngine;
 public class PlayerStatsContainer : ScriptableObject, IPlayerStats
 {
     [SerializeField] private int health;
-    [SerializeField] private string playerName;
+    private string playerName;
     [SerializeField] private int score;
-    [SerializeField] private int killPoints;
+    [SerializeField] private float killPoints;
 
     public int Health { get { return health; } set { health = value; } }
 
@@ -16,7 +16,7 @@ public class PlayerStatsContainer : ScriptableObject, IPlayerStats
 
     public int Score { get { return score; } set { score = value; } }
 
-    public int KillPoints { get { return killPoints; } set { killPoints = value; } }
+    public float KillPoints { get { return killPoints; } set { killPoints = value; } }
 
     
     //Big ohhhhhhh moment here for this syntax and utilizing interfaces with getters.

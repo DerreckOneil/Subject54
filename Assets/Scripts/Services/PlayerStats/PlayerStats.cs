@@ -12,10 +12,15 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private int health;
     [SerializeField] private string playerName;
     [SerializeField] private int score;
-    [SerializeField] private int killPoints;
+    [SerializeField] private float killPoints;
 
     [SerializeField] private GameRuntime gameRuntime;
 
+    public float KillPoints
+    {
+        get { return killPoints; }
+        set { killPoints = value; }
+    }
     // Start is called before the first frame update
     void Awake()
     {
@@ -29,7 +34,6 @@ public class PlayerStats : MonoBehaviour
 
     private void SetPlayerStats()
     {
-        playerName = playerStatsContainer.PlayerName;
         health = playerStatsContainer.Health;
         score = playerStatsContainer.Score;
         killPoints = playerStatsContainer.KillPoints;

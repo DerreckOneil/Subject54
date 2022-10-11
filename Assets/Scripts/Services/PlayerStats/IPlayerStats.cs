@@ -6,8 +6,11 @@ public interface IPlayerStats
     //remember an interface is a blueprint...what should all players have
     //private string name;
 
-    public string PlayerName { get; }
+    //public string PlayerName { get; }
 
     public int Score { get; }
 
+    public int Health { get; }
+
+    public float KillPoints{ get; }
 }

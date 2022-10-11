@@ -11,11 +11,10 @@ public class StopTimeMechanic : MonoBehaviour, ITimeStateListener
 
 
     [SerializeField] private GameRuntime gameRuntime;
-    private static VignetteTimeEffect effectRef;
 
-    //How about placing all these in a ScriptableObject? 
+    [SerializeField] private UIGameData gameDataRef;
 
-    private Slider Meter;
+    [SerializeField] private VignetteTimeEffect effectRef;
 
     private Text MeterText;
 
@@ -26,6 +25,7 @@ public class StopTimeMechanic : MonoBehaviour, ITimeStateListener
     private void Awake()
     {
         ps = GameObject.FindGameObjectsWithTag("ps");
+        
     }
 
     public void OnTimeStateChanged(TimeState previous, TimeState current)
@@ -50,8 +50,7 @@ public class StopTimeMechanic : MonoBehaviour, ITimeStateListener
         //What do I wanna check every frame
 
 
-
-        if (Meter.value == Meter.maxValue)
+        if (effectRef.Meter.value == effectRef.Meter.maxValue)
         {
             //Meter.colors.normalColor = Color.red;
             MeterText.text = "Max! (Right click to Stop Time!)";
@@ -61,7 +60,7 @@ public class StopTimeMechanic : MonoBehaviour, ITimeStateListener
             MeterText.text = "";
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1) && Meter.value == Meter.maxValue)
+        if (Input.GetKeyDown(KeyCode.Mouse1) && effectRef.Meter.value == effectRef.Meter.maxValue)
         {
 
             Debug.Log("Stop Time");

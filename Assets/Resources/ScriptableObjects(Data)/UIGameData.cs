@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [CreateAssetMenu]
-public class UIGameData : ScriptableObject
+public class UIGameData : MonoBehaviour
 {
     [SerializeField]
     private Slider meter;
