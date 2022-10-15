@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 252d69e6f43c83048b035c48e3dd490e, type: 3}
-  m_Name: UI Game Data
+  m_Script: {fileID: 11500000, guid: 8ece0230237ef29479545561a93834ae, type: 3}
+  m_Name: Pistol
   m_EditorClassIdentifier: 
-  meter: {fileID: 0}
-  meterText: {fileID: 0}
-  ps: []
-  image: {fileID: 0}
+  weapon: {fileID: 0}
+  weaponName: 
+  weaponDmg: 0

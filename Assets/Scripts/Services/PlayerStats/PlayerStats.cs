@@ -21,6 +21,7 @@ public class PlayerStats : MonoBehaviour
         get { return killPoints; }
         set { killPoints = value; }
     }
+    
     // Start is called before the first frame update
     void Awake()
     {

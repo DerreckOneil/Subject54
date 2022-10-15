@@ -61,21 +61,7 @@ public class GameEnvironment : MonoBehaviour
         gameTime = currentTime;
         currentTime = (int)Time.time;
         currentTimeD = (double)Time.fixedTime;
-        //print(currentTimeD);
-        /*
-        if (Time.fixedTime != 0 && currentTime % timePeriod == 0 && !night && !rotated)
-        {
-           
-            rotateSunDown();
-
-            print("My coordinates now are: " + mainLight.transform.rotation);
-
-        }
-        else
-        {
-            rotated = false;
-        }
-        */
+        
         rotateSunDown();
 
         if (!daytime)
@@ -129,58 +115,10 @@ public class GameEnvironment : MonoBehaviour
         {
             changed = false;
         }
-        /*
-        if (mainLight.intensity <= 0.0f)
-        {
-            night = true;
-        }
-        if (night && Time.time > timePeriod)
-        {
-            print("Time to go back up!");
-            //mainLight.intensity += .1f;
-            rotateSunUp();
-
-        }
-        if (mainLight.intensity >= 2.0f)
-        {
-            night = false;
-        }
-        */
+        
     }
 
-    //IEnumerator rotateSun()
     
-
-        /*
-        while (mainLight.transform.rotation != new Quaternion(0.7f, -0.5f, -0.3f, 0.4f)) // orig pos(0.7f, -0.2, 0.2, 0.6)
-        {
-            yield return new WaitForSeconds(.5f);
-            mLX = mainLight.transform.rotation.w;
-            mLY = mainLight.transform.rotation.x;
-            mLZ = mainLight.transform.rotation.y;
-            mLt = mainLight.transform.rotation.z;
-            print(+ mLX +" "+ mLY + " " + mLZ +" " + mLt);
-            if(mLX != 0.7f)
-            {
-                print("I shouldn't be in here!");
-            }
-            if(mLY != -0.5f)
-            {
-                mLY -= .1f;
-            }
-            if(mLZ != -0.3f)
-            {
-                mLZ -= .1f;
-            }
-            if(mLt != 0.4f)
-            {
-                mLt += .1f;
-            }
-
-            mainLight.transform.rotation.Set(mLX, mLY, mLZ, mLt);
-            //mainLight.transform.rotation.Set(mLX, mLY -= .1f, mLZ -= .1f, mLt += .1f);
-        }
-        */
         
         void rotateSunDown()
     {

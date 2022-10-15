@@ -2811,6 +2811,11 @@ PrefabInstance:
       propertyPath: SWATref
       value: 
       objectReference: {fileID: 1735103193}
+    - target: {fileID: 1425515559695620961, guid: 836cd9d9ffdcba64db9dcab92e5a3d71,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5266652437409214063, guid: 836cd9d9ffdcba64db9dcab92e5a3d71,
         type: 3}
       propertyPath: m_Material
@@ -16366,7 +16371,7 @@ PrefabInstance:
     - target: {fileID: 7608351684809407323, guid: ed872c8e8037dc5488d90f026a8b8009,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed872c8e8037dc5488d90f026a8b8009, type: 3}
