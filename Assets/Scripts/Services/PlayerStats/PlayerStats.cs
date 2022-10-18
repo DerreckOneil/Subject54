@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float killPoints;
 
     [SerializeField] private GameRuntime gameRuntime;
+
+    public UnityEvent OnPlayerHit;
 
     public float KillPoints
     {
@@ -45,7 +48,13 @@ public class PlayerStats : MonoBehaviour
     {
         
     }
-
+    //Let's use listener pattern here. 
     //editor method everytime the player is hit...update the stats accordingly
+
+    public void PlayerHit()
+    {
+        health--;
+        //Invoke ScreenShake effect! via editor tho
+    }
     
 }

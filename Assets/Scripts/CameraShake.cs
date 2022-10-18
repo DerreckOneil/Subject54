@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 public class CameraShake : MonoBehaviour
 {
@@ -36,9 +37,9 @@ public class CameraShake : MonoBehaviour
         originalPos = camTransform.localPosition;
     }
 
-    void Update()
+    public void OnTriggerEffect()
     {
-        if (shakeDuration > 0 )
+        if (shakeDuration > 0)
         {
             camTransform.localPosition = originalPos + Random.insideUnitSphere * shakeAmount;
             StartCoroutine(screenFlash());
@@ -49,8 +50,8 @@ public class CameraShake : MonoBehaviour
             shakeDuration = 0f;
             camTransform.localPosition = originalPos;
         }
-    }
 
+    }
     IEnumerator screenFlash()
     {
         whiteImg.enabled = true;

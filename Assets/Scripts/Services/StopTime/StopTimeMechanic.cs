@@ -16,6 +16,8 @@ public class StopTimeMechanic : MonoBehaviour, ITimeStateListener
 
     [SerializeField] private VignetteTimeEffect effectRef;
 
+    [SerializeField] private MeterUpdate meterRef;
+
     private Text MeterText;
 
     private GameObject[] ps;
@@ -50,7 +52,7 @@ public class StopTimeMechanic : MonoBehaviour, ITimeStateListener
         //What do I wanna check every frame
 
 
-        if (effectRef.Meter.value == effectRef.Meter.maxValue)
+        if (meterRef.Meter.value == meterRef.Meter.maxValue)
         {
             //Meter.colors.normalColor = Color.red;
             MeterText.text = "Max! (Right click to Stop Time!)";
@@ -60,7 +62,7 @@ public class StopTimeMechanic : MonoBehaviour, ITimeStateListener
             MeterText.text = "";
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1) && effectRef.Meter.value == effectRef.Meter.maxValue)
+        if (Input.GetKeyDown(KeyCode.Mouse1) && meterRef.Meter.value == meterRef.Meter.maxValue)
         {
 
             Debug.Log("Stop Time");

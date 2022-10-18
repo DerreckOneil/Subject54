@@ -3,29 +3,29 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class VignetteTimeEffect : MonoBehaviourService, ITimeStateListener
+public class VignetteTimeEffect : MonoBehaviour, ITimeStateListener
 {
-
+    //Let this only handle the effect! 
     [SerializeField] private GameObject image;
 
-    private Slider meter;
+    //private Slider meter;
 
     [SerializeField] GameRuntime gameRuntime;
 
-    [SerializeField] private UIGameData gameDataRef;
+    //[SerializeField] private UIGameData gameDataRef; //Why? 
 
-    public Slider Meter => meter;
+    //public Slider Meter => meter;
 
     public delegate void AnimationListener();
 
     [SerializeField]
     private void Awake()
     {
-        meter = gameDataRef.Meter;
+        //meter = gameDataRef.Meter;
     }
     private void Update()
     {
-        meter.value = gameRuntime.ServiceLocator.GetService<PlayerStats>().KillPoints;
+        //meter.value = gameRuntime.ServiceLocator.GetService<PlayerStats>().KillPoints; //Why put this here? Why not create another mono and place this on there?
     }
     public void OnTimeStateChanged(TimeState previous, TimeState current)
     {
@@ -48,7 +48,7 @@ public class VignetteTimeEffect : MonoBehaviourService, ITimeStateListener
         while (playerKP > 0)
         {
             playerKP -= .1f;
-            meter.value = playerKP;
+            //meter.value = playerKP;
             gameRuntime.ServiceLocator.GetService<PlayerStats>().KillPoints = playerKP;
         }
 
