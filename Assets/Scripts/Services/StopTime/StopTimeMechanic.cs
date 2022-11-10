@@ -10,6 +10,7 @@ public class StopTimeMechanic : MonoBehaviour, ITimeStateListener
 {
     //TODO: Make the enemies set their ps to the UIGameData list.
 
+    [Serializable] public class StateChangeEvent : UnityEvent<TimeState, TimeState> { }
 
     [SerializeField] private GameRuntime gameRuntime;
 
@@ -31,7 +32,7 @@ public class StopTimeMechanic : MonoBehaviour, ITimeStateListener
 
         //Test out game state here...
         gameRuntime.ServiceLocator.GetService<TimeStateService>().TimeState = TimeState.Normal;
-        //OnTimeStateChange.AddListener(OnTimeStateChanged);
+        OnTimeStateChange.AddListener(OnTimeStateChanged);
 
     }
 
