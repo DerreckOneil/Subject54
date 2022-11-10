@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.github.derreckoneil.fps-controller": "https://github.com/DerreckOneil/fps-controller.git#unity-package",
     "com.unity.analytics": "3.6.12",
     "com.unity.collab-proxy": "1.15.13",
     "com.unity.ide.rider": "3.0.12",
