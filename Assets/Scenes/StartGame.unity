@@ -2815,6 +2815,22 @@ MonoBehaviour:
   gameDataRef: {fileID: 1021245262}
   effectRef: {fileID: 1021245263}
   meterRef: {fileID: 1476686216110584037}
+  MeterText: {fileID: 1650585941}
+  OnTimeStateChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 588623731}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &588623733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2839,7 +2855,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 588623733}
         m_TargetAssemblyTypeName: PlayerStats, Assembly-CSharp
-        m_MethodName: PlayerHit
+        m_MethodName: DecreaseHealth
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3584,6 +3600,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 800434314}
+  - component: {fileID: 800434315}
   m_Layer: 0
   m_Name: EnemySpawnPoints
   m_TagString: Untagged
@@ -3610,6 +3627,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &800434315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800434313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a209d35dba1b1d41be3bca68de75467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameRuntime: {fileID: 11400000, guid: 6fe2b623678053c42a0e4f3591d226e1, type: 2}
+  spawnPoints:
+  - {fileID: 138316884}
+  - {fileID: 905055545}
+  - {fileID: 1072606041}
+  - {fileID: 1107113937}
+  OnWaveStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  OnWaveEnded:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &823237769 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1476686215824354410, guid: d74ffcab3c3c0924485751bb1e7c1458,
@@ -12478,6 +12519,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1642622642}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1650585941 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1476686216734262999, guid: d74ffcab3c3c0924485751bb1e7c1458,
+    type: 3}
+  m_PrefabInstance: {fileID: 1476686216110584035}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1656820704 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100036, guid: cfdf515e269dcd247b8e23b3392ca38c,
@@ -15068,7 +15121,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2004339991, guid: 01e224b5fd9d4f94098544b8cb8b1343, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2010340308041700199, guid: 01e224b5fd9d4f94098544b8cb8b1343,
         type: 3}
@@ -15078,7 +15131,7 @@ PrefabInstance:
     - target: {fileID: 2010340308041700199, guid: 01e224b5fd9d4f94098544b8cb8b1343,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3295913660726075764, guid: 01e224b5fd9d4f94098544b8cb8b1343,
         type: 3}
@@ -16237,7 +16290,7 @@ PrefabInstance:
     - target: {fileID: 7608351684809407323, guid: ed872c8e8037dc5488d90f026a8b8009,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed872c8e8037dc5488d90f026a8b8009, type: 3}

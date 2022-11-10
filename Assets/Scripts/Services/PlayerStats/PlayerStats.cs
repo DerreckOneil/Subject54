@@ -51,9 +51,13 @@ public class PlayerStats : MonoBehaviour
     //Let's use listener pattern here. 
     //editor method everytime the player is hit...update the stats accordingly
 
-    public void PlayerHit()
+    public void DecreaseHealth()
     {
         health--;
+        //score +=100;
+        //
+
+
         //Invoke ScreenShake effect! via editor tho
     }
     

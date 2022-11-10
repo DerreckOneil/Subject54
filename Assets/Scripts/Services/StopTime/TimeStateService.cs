@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [CreateAssetMenu]
-public class StopTimeService : ScriptableObject, IStopTimeService
+public class TimeStateService : ScriptableObject, IStopTimeService
 {
     [SerializeField] private GameRuntime gameRuntime;
 
@@ -13,6 +13,7 @@ public class StopTimeService : ScriptableObject, IStopTimeService
         get { return timeState; }
         set
         {
+            Debug.Log("Changing the state!");
             TimeState previous = timeState;
             timeState = value;
             gameRuntime.ServiceLocator.InvokeAllListeners<ITimeStateListener>

@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 [CreateAssetMenu]
-public class EnemySpawnerService : ScriptableObject
+public class EnemySpawnerContainer : ScriptableObject
 {
     //There will only be one of these...no interface attached.
     [SerializeField] private GameRuntime gameRuntime;
 
-    [SerializeField] private GameObject[] spawnPoints; 
+    [SerializeField] private GameObject[] spawnPoints;
+    //There should be multiple SO for this per scene (if I decide to create another scene. )
 
     //Need a reference to the current game state; whether or not if the round has ended etc.
+
+    
+
 
 }

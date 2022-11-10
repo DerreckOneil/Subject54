@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: ServiceLocator
   m_EditorClassIdentifier: 
   services:
-  - {fileID: 11400000, guid: 45d223ed01d94424fbe84095feef75ba, type: 2}
+  - {fileID: 11400000, guid: a99895128419e3d42994ae01b731d042, type: 2}
   - {fileID: 11400000, guid: 36b7056cf1b504b45a25901c50deeec4, type: 2}
   - {fileID: 11400000, guid: f7e2d9c936d2dda418221b8287891030, type: 2}

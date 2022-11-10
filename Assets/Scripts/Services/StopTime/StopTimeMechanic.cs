@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 [CreateAssetMenu]
@@ -18,16 +19,20 @@ public class StopTimeMechanic : MonoBehaviour, ITimeStateListener
 
     [SerializeField] private MeterUpdate meterRef;
 
-    private Text MeterText;
+    [SerializeField] private Text MeterText;
 
     private GameObject[] ps;
 
-    private GameObject image;
+    public UnityEvent OnTimeStateChange;
 
     private void Awake()
     {
         ps = GameObject.FindGameObjectsWithTag("ps");
-        
+
+        //Test out game state here...
+        gameRuntime.ServiceLocator.GetService<TimeStateService>().TimeState = TimeState.Normal;
+        //OnTimeStateChange.AddListener(OnTimeStateChanged);
+
     }
 
     public void OnTimeStateChanged(TimeState previous, TimeState current)
@@ -50,7 +55,6 @@ public class StopTimeMechanic : MonoBehaviour, ITimeStateListener
     private void Update()
     {
         //What do I wanna check every frame
-
 
         if (meterRef.Meter.value == meterRef.Meter.maxValue)
         {
@@ -75,6 +79,7 @@ public class StopTimeMechanic : MonoBehaviour, ITimeStateListener
     }
     void NormalTime()
     {
+        effectRef.GetComponent<GameObject>().SetActive(false);
         Movement.timeFrame = 1;
         //Meter.value = PlayerStats.EnemyKillPoints;
         if (ps != null)
@@ -88,6 +93,7 @@ public class StopTimeMechanic : MonoBehaviour, ITimeStateListener
 
     void StopTime()
     {
+        effectRef.GetComponent<GameObject>().SetActive(true);
         IStopTimeService timeSystem = gameRuntime.ServiceLocator.GetService<IStopTimeService>();
 
         Movement.timeFrame = 0; //Stops everything I assign movement (script) to within Unity by deception

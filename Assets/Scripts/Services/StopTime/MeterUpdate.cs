@@ -14,7 +14,6 @@ public class MeterUpdate : MonoBehaviour
     public Slider Meter
     {
         get { return meter; }
-        set { meter = value; }
     }
 
     [SerializeField] GameRuntime gameRuntime;
@@ -22,6 +21,6 @@ public class MeterUpdate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        meter.value = gameRuntime.ServiceLocator.GetService<PlayerStats>().KillPoints;
+        meter.value = gameRuntime.ServiceLocator.GetService<PlayerStatsContainer>().KillPoints;
     }
 }
