@@ -2,7 +2,12 @@
 
 public class MonoBehaviourService : MonoBehaviour
 {
-    public GameRuntime gameRuntime;
+    [SerializeField] private GameRuntime gameRuntime;
+
+    protected GameRuntime GameRuntime
+    {
+        get { return gameRuntime; }
+    }
 
     protected virtual void OnEnable()
     {

@@ -3,15 +3,13 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class VignetteTimeEffect : MonoBehaviour, ITimeStateListener
+
+public class VignetteTimeEffect : MonoBehaviourService, ITimeStateListener
 {
     //Let this only handle the effect! 
     [SerializeField] private GameObject image;
 
     //private Slider meter;
-
-    [SerializeField] GameRuntime gameRuntime;
-
     //[SerializeField] private UIGameData gameDataRef; //Why? 
 
     //public Slider Meter => meter;
@@ -44,12 +42,12 @@ public class VignetteTimeEffect : MonoBehaviour, ITimeStateListener
 
     private void BeginDecrement()
     {
-        float playerKP = gameRuntime.ServiceLocator.GetService<PlayerStats>().KillPoints;
+        float playerKP = GameRuntime.ServiceLocator.GetService<PlayerStats>().KillPoints;
         while (playerKP > 0)
         {
             playerKP -= .1f;
             //meter.value = playerKP;
-            gameRuntime.ServiceLocator.GetService<PlayerStats>().KillPoints = playerKP;
+            GameRuntime.ServiceLocator.GetService<PlayerStats>().KillPoints = playerKP;
         }
 
     }

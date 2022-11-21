@@ -5,8 +5,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-[CreateAssetMenu]
-public class StopTimeMechanic : MonoBehaviour, ITimeStateListener
+
+public class StopTimeMechanic : MonoBehaviour
 {
     //TODO: Make the enemies set their ps to the UIGameData list.
 
@@ -24,7 +24,7 @@ public class StopTimeMechanic : MonoBehaviour, ITimeStateListener
 
     private GameObject[] ps;
 
-    public UnityEvent OnTimeStateChange;
+    [SerializeField] TimeState current;
 
     private void Awake()
     {
@@ -32,10 +32,12 @@ public class StopTimeMechanic : MonoBehaviour, ITimeStateListener
 
         //Test out game state here...
         gameRuntime.ServiceLocator.GetService<TimeStateService>().TimeState = TimeState.Normal;
-        OnTimeStateChange.AddListener(OnTimeStateChanged);
+
+        //OnTimeStateChange.AddListener(OnTimeStateChanged);
 
     }
 
+    /* We're doing this in another place. Do this via code only
     public void OnTimeStateChanged(TimeState previous, TimeState current)
     {
         switch (current)
@@ -52,6 +54,7 @@ public class StopTimeMechanic : MonoBehaviour, ITimeStateListener
         }
 
     }
+    */
 
     private void Update()
     {
@@ -73,9 +76,23 @@ public class StopTimeMechanic : MonoBehaviour, ITimeStateListener
             Debug.Log("Stop Time");
             effectRef.BeginSTAnim();
             //StartCoroutine(stopTimeTransition());
-
-
         }
+
+        current = gameRuntime.ServiceLocator.GetService<TimeStateService>().TimeState;
+
+        switch (current)
+        {
+            case TimeState.Normal:
+                NormalTime();
+                break;
+            case TimeState.TimeStopped:
+                StopTime();
+                break;
+            default:
+                Debug.LogError("Unexpected state " + current);
+                break;
+        }
+
 
     }
     void NormalTime()
