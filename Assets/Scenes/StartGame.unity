@@ -15815,7 +15815,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1829321162}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -46.310608, y: -79.18525, z: -22.10878}
+  m_LocalPosition: {x: -41.510605, y: -78.51524, z: -27.83841}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16151,6 +16151,12 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300030, guid: cfdf515e269dcd247b8e23b3392ca38c, type: 3}
+--- !u!1 &1953294778 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 721085935963965794, guid: d74ffcab3c3c0924485751bb1e7c1458,
+    type: 3}
+  m_PrefabInstance: {fileID: 1476686216110584035}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1953434026
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17967,6 +17973,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1476686215791516710, guid: d74ffcab3c3c0924485751bb1e7c1458,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1476686215984456945, guid: d74ffcab3c3c0924485751bb1e7c1458,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -18131,6 +18142,71 @@ MonoBehaviour:
   shakeDuration: 5
   shakeAmount: 0.3
   decreaseFactor: 2
+--- !u!114 &1476686216110584043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476686216110584036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf96072aae88294f8d4f8340fa13bb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameRuntime: {fileID: 11400000, guid: 6fe2b623678053c42a0e4f3591d226e1, type: 2}
+  stopTimeMeter: {fileID: 823237769}
+  stopTimeMeterText: {fileID: 1650585941}
+  vendorText: {fileID: 855944391}
+  effectImg: {fileID: 1953294778}
+  onRuntimeStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onStopTimeMeterTextEnable:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1476686216110584043}
+        m_TargetAssemblyTypeName: HUDSystem, Assembly-CSharp
+        m_MethodName: OnStopTimeMeterTextEnable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onVendorTextEnable:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1476686216110584043}
+        m_TargetAssemblyTypeName: HUDSystem, Assembly-CSharp
+        m_MethodName: OnVendorTextEnable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onEffectsImgEnable:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1476686216110584043}
+        m_TargetAssemblyTypeName: HUDSystem, Assembly-CSharp
+        m_MethodName: OnEffectsImgEnable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1523503232287321167
 MonoBehaviour:
   m_ObjectHideFlags: 0
