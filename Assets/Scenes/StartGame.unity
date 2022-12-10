@@ -17963,6 +17963,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1021245262, guid: d74ffcab3c3c0924485751bb1e7c1458, type: 3}
+      propertyPath: ps.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1476686215395796094, guid: d74ffcab3c3c0924485751bb1e7c1458,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -18161,7 +18165,19 @@ MonoBehaviour:
   effectImg: {fileID: 1953294778}
   onRuntimeStart:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1476686216110584043}
+        m_TargetAssemblyTypeName: HUDSystem, Assembly-CSharp
+        m_MethodName: OnRuntimeStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onStopTimeMeterTextEnable:
     m_PersistentCalls:
       m_Calls:

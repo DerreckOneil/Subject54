@@ -20,7 +20,11 @@ public class HUDSystem : MonoBehaviourService
 
     public void OnRuntimeStart()
     {
-        
+        Debug.Log("Setting all UI elements off!");
+        //stopTimeMeter.enabled = false;
+        stopTimeMeterText.enabled = false;
+        vendorText.enabled = false;
+        effectImg.GetComponent<Image>().enabled = false;
     }
 
     public void OnStopTimeMeterTextEnable()
