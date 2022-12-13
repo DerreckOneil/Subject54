@@ -4683,17 +4683,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameRuntime: {fileID: 11400000, guid: 6fe2b623678053c42a0e4f3591d226e1, type: 2}
+  onWaveStarted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 800434315}
+        m_TargetAssemblyTypeName: EnemySpawner, Assembly-CSharp
+        m_MethodName: OnWaveStarted
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onWaveEnded:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 800434315}
+        m_TargetAssemblyTypeName: EnemySpawner, Assembly-CSharp
+        m_MethodName: OnWaveEnded
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   spawnPoints:
-  - {fileID: 138316884}
-  - {fileID: 905055545}
-  - {fileID: 1072606041}
-  - {fileID: 1107113937}
-  OnWaveStarted:
-    m_PersistentCalls:
-      m_Calls: []
-  OnWaveEnded:
-    m_PersistentCalls:
-      m_Calls: []
+  - {fileID: 934937497}
+  - {fileID: 239964194}
+  - {fileID: 911938420}
+  - {fileID: 1382490782}
 --- !u!114 &823237769 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1476686215824354410, guid: d74ffcab3c3c0924485751bb1e7c1458,
@@ -17255,8 +17279,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2098778515}
-  m_LocalRotation: {x: -0.012323462, y: 0.98448753, z: 0.15666424, w: 0.0780306}
-  m_LocalPosition: {x: -41.500916, y: -78.299904, z: -26.785416}
+  m_LocalRotation: {x: -0.1470268, y: 0.7917084, z: 0.20994751, w: 0.5545295}
+  m_LocalPosition: {x: -42.311783, y: -78.76268, z: -27.033478}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

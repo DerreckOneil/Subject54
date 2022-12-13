@@ -3,26 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EnemySpawner : MonoBehaviour
+public class EnemySpawner : MonoBehaviourService
 {
+    [SerializeField] private UnityEvent onWaveStarted; //Done for modularity...just in case I decide to do something else during spawn.
 
-    [SerializeField] private GameRuntime gameRuntime;
+    [SerializeField] private UnityEvent onWaveEnded;
 
     [SerializeField] private GameObject[] spawnPoints;
 
-    [SerializeField] private UnityEvent OnWaveStarted;
+    private GameObject enemy;
 
-    [SerializeField] private UnityEvent OnWaveEnded;
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        enemy = GameRuntime.ServiceLocator.GetService<EnemySpawnerSystem>().Enemy;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnWaveStarted()
     {
-        
+        GameRuntime.ServiceLocator.GetService<EnemySpawnerSystem>().WaveState = WaveState.Started;
+
+        for (int i = 0; i < spawnPoints.Length; i++)
+        {
+            Instantiate(enemy, enemy.gameObject.transform.position, enemy.gameObject.transform.rotation);
+        }
     }
+
+    public void OnWaveEnded()
+    {
+        GameRuntime.ServiceLocator.GetService<EnemySpawnerSystem>().WaveState = WaveState.Ended;
+
+    }
+
+
+
 }

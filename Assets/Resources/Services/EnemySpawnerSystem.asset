@@ -10,7 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 745798cb301221d448ede431e1aa2ae4, type: 3}
-  m_Name: EnemySpawnerContainer
+  m_Name: EnemySpawnerSystem
   m_EditorClassIdentifier: 
-  gameRuntime: {fileID: 11400000, guid: 6fe2b623678053c42a0e4f3591d226e1, type: 2}
-  spawnPoints: []
+  enemy: {fileID: 7608351684809407323, guid: ed872c8e8037dc5488d90f026a8b8009, type: 3}
